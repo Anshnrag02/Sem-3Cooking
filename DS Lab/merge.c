@@ -28,11 +28,23 @@ void merge(int *a, int n, int *b, int m, int *c){
 }
 
 int main(){
-	int n=10;
-	int a[]={1,3,5,7,9,11,13,15,17,19};
-	int m=5;
-	int b[]={0,2,4,6,8};
-	int c[15];
+	int n;
+	int a[100];
+	int m;
+	int b[100];
+	int c[200];
+	printf("Enter number of elements in array 1:\n");
+	scanf("%d",&n);
+	printf("Enter the elements\n");
+	for(int i =0; i<n; i++){
+		scanf("%d",&a[i]);
+	}
+	printf("Enter number of elements in array 2:\n");
+	scanf("%d",&m);
+	printf("Enter the elements\n");
+	for(int i =0; i<m; i++){
+		scanf("%d",&b[i]);
+	}
 	merge(a,n,b,m,c);
 	for(int i = 0  ; i < m+n ; i++){
 		printf("%d ", c[i]);

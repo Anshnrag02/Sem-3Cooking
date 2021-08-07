@@ -19,30 +19,29 @@ void merge(int*a,int lo,int mid,int hi){
         a[q]=b[q];
 }
 
-void sort(int *a, int n)
-
+void mergesort(int *a, int hi, int low)
 {
-    int p;
-    for( p=2;p<=n;p=p*2)
-    {
-        for(int i=0;i+p-1<n;i+=p)
-        {
-            merge(a,i,i+(p-1)/2,i+p-1);   
-        }
-        
+    if(low<hi){
+        int m= (low + hi)/2;
+        mergesort(a,hi,m+1);
+        mergesort(a,m,low);
+        merge(a,low,m,hi);       
     }
-    if(p/2<n)
-        {
-            merge(a,0,(p-1)/2,n-1);
-        }
 }
 
 
 int main()
 {
-    int n=9;
-    int a[]={8,3,7,4,9,2,6,5,1};
-    sort(a,n);
+    int n;
+    int a[1000];
+    printf("Enter number of elements in array:\n");
+	scanf("%d",&n);
+	printf("Enter the elements\n");
+	for(int i =0; i<n; i++){
+		scanf("%d",&a[i]);
+	}
+    mergesort(a,n-1,0);
+    printf("Sorted array is:");
     for(int k=0;k<n;k++)
         printf("%d ",a[k]);
     return 0;
