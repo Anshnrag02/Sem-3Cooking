@@ -49,9 +49,7 @@ class Calculator{
                 case 4:
                     cout<<div()<<endl;
                     break;    
-            }
-
-            
+            }           
         }
 }; 
 
