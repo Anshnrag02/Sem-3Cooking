@@ -94,24 +94,24 @@ void deleteNode()
 }
 void search()
 {
-int x;
-printf("Enter data to be searched\n");
-scanf("%d", &x);
-struct node *p = h.start;
-while (p)
-{
-if (p->data == x)
-{
-printf("Element found in list!\n");
-return;
-}
-p = p->next;
-}
-printf("Element not found!!\n");
+    int x;
+    printf("Enter data to be searched\n");
+    scanf("%d", &x);
+    struct node *p = h.start;
+    while (p)
+    {
+        if (p->data == x)
+        {
+            printf("Element found in list!\n");
+            return;
+        }
+        p = p->next;
+    }
+    printf("Element not found!!\n");
 }
 void countNode()
 {
-printf("Number of nodes :%d\n", h.count);
+    printf("Number of nodes :%d\n", h.count);
 }
 int main()
 {
