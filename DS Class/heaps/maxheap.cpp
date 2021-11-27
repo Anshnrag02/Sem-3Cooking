@@ -71,6 +71,7 @@ class MaxHeap{
                 return INT_MIN;
             }
             if(heap_size == 1){
+                heap_size--;
                 return harr[0];
             }
             int root = harr[0];
