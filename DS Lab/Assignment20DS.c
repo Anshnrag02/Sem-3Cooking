@@ -8,9 +8,9 @@ void Heapify (int a[], int n, int i)
     int left = 2*i+1;
     int right = 2*i+2;
     int index = i;
-    if (left < n && a[left] > a[index])
+    if (left < n && a[left] < a[index])
     index = left;
-    if (right < n && a[right] > a[index])
+    if (right < n && a[right] < a[index])
     index = right;
     if (i == index)
     return;
@@ -51,7 +51,7 @@ int main ()
     for (int i = 0; i < n; i++)
     scanf("%d", &a[i]);
     HeapSort (a, n);
-    printf("After sorting, the array in ascending order is: ");
+    printf("After sorting, the array in descending order is: ");
     for (int i = 0; i < n; i++)
     printf("%d ", a[i]);
 

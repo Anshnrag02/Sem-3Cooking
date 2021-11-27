@@ -61,15 +61,8 @@ switch (choice){
 case 1:
 printf("Enter element to be inserted:");
 scanf("%d", &x);
-if(typeof(x)==typeof(int))
-{
     insertInArray(arr, x, n);
     n++;
-}
-else{
-    printf("Error");
-    break;
-}
 printf("Element inserted successfully!\n");
 break;
 case 2:

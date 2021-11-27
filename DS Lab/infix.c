@@ -1,104 +1,120 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
-struct stack
+// Stack type
+struct Stack
 {
-    int top;
-    int size;
-    int *arr;
+int top;
+unsigned capacity;
+int* array;
 };
-
-struct stack *createStack(int size)
+// Stack Operations
+struct Stack* createStack( unsigned capacity )
 {
-    struct stack *st = (struct stack *)malloc(sizeof(struct stack));
-    st->top = -1;
-    st->size = size;
-    st->arr = (int *)malloc(st->size * sizeof(int));
-    return st;
+struct Stack* stack = (struct Stack*)
+malloc(sizeof(struct Stack));
+if (!stack)
+return NULL;
+stack->top = -1;
+stack->capacity = capacity;
+stack->array = (int*) malloc(stack->capacity *
+sizeof(int));
+
+return stack;
+}
+int isEmpty(struct Stack* stack)
+{
+return stack->top == -1 ;
+}
+char peek(struct Stack* stack)
+{
+return stack->array[stack->top];
 }
 
-
-int isEmpty(struct stack *st)
+char pop(struct Stack* stack)
 {
-    return st->top == -1;
+if (!isEmpty(stack))
+return stack->array[stack->top--] ;
+return '$';
+}
+void push(struct Stack* stack, char op)
+{
+stack->array[++stack->top] = op;
 }
 
-char peek(struct stack *st)
+// A utility function to check if
+// the given character is operand
+int isOperand(char ch)
 {
-    return st->arr[st->top];
+return (ch >= 'a' && ch <= 'z') ||
+(ch >= 'A' && ch <= 'Z');
+
+}
+// A utility function to return
+// precedence of a given operator
+// Higher returned value means
+// higher precedence
+int Prec(char ch)
+{
+switch (ch)
+{
+case '+':
+case '-':
+return 1;
+case '*':
+case '/':
+return 2;
+case '^':
+return 3;
+}
+return -1;
 }
 
-char pop(struct stack *st)
+int infixToPostfix(char* exp)
 {
-    if (!isEmpty(st))
-    return st->arr[st->top--];
-    return '$';
+int i, k;
+
+struct Stack* stack = createStack(strlen(exp));
+if(!stack)
+return -1 ;
+for (i = 0, k = -1; exp[i]; ++i)
+{
+
+if (isOperand(exp[i]))
+exp[++k] = exp[i];
+
+else if (exp[i] == '(')
+push(stack, exp[i]);
+
+else if (exp[i] == ')')
+{
+while (!isEmpty(stack) && peek(stack) != '(')
+exp[++k] = pop(stack);
+if (!isEmpty(stack) && peek(stack) != '(')
+return -1;
+else
+pop(stack);
+}
+else
+{
+while (!isEmpty(stack) &&
+Prec(exp[i]) <= Prec(peek(stack)))
+exp[++k] = pop(stack);
+push(stack, exp[i]);
+}
 }
 
-void push(struct stack *st, char op)
-{
-    st->arr[++st->top] = op;
-}
-int is_operand(char ch)
-{
-    return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z');
-}
-int precedence(char ch)
-{
-    switch (ch)
-    {
-        case '+':
-            return 1;
-        case '-':
-            return 1;
-        case '*':
-            return 2;
-        case '/':
-            return 2;
-        case '^':
-            return 3;
-    }
-    return -1;
-}
+while (!isEmpty(stack))
 
-int infixToPostfix(char *exp)
-{
-    int i, k;
-    struct stack *st = createStack(strlen(exp));
-    for (i = 0, k = -1; exp[i]; ++i)
-    {
-        if (is_operand(exp[i]))
-            exp[++k] = exp[i];
-        else if (exp[i] == '(')
-            push(st, exp[i]);
-        else if (exp[i] == ')')
-        {
-            while (!isEmpty(st) && peek(st) != '(')
-                exp[++k] = pop(st);
-            if (!isEmpty(st) && peek(st) != '(')
-                return -1;
-            else
-                pop(st);
-        }
-        else
-        {
-        while (!isEmpty(st) && precedence(exp[i]) <= precedence(peek(st)))
-            exp[++k] = pop(st);
-        push(st, exp[i]);
-        }
-    }
-    while (!isEmpty(st))
-        exp[++k] = pop(st);
-    exp[++k] = '\0';
-    printf("%s\n", exp);
+exp[++k] = pop(stack );
+exp[++k] = '\0';
+printf( "%s", exp );
 }
 
 int main()
 {
- char exp[700];
- printf("\nenter Infix expression:\n");
- scanf("%s",exp);
- infixToPostfix(exp);
- return 0;
+char exp[1000];
+scanf("%s",exp);
+infixToPostfix(exp);
+return 0;
 }
