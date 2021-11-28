@@ -3,9 +3,10 @@ using namespace std;
 
 class MaxHeap{
     
-        int heap_size;
+        
         int *harr;
         int capacity;
+        int heap_size;
 
     public:
 
@@ -28,7 +29,7 @@ class MaxHeap{
                 cout<<"Cond'n Ovrflw\n";
                 return;
             }
-            int i = heap_size-1;
+            int i = heap_size;
             harr[i] = key;
             heap_size++;
             
@@ -51,8 +52,32 @@ class MaxHeap{
                 largest = r;
             }
             if( largest != i ){
-                swap(harr[largest],harr[i])
+                swap(harr[largest],harr[i]);
                 heapify(largest);
+            }
+        }
+
+        void itr_heapify(int i){
+            int largest  = i ;
+            while(i<heap_size){
+
+                int l  =  left(i);
+                int r  =  right (i);
+
+                if(l<heap_size and harr[largest]<harr[l]){
+                    largest = l;
+                }
+                
+                if(r<heap_size and harr[largest]<harr[r]){
+                    largest = r;
+                }
+                if( largest != i ){
+                    swap(harr[largest],harr[i]);
+                    i=largest;
+                }
+                else{
+                    break;
+                }
             }
         }
 
@@ -89,8 +114,45 @@ class MaxHeap{
         int getMax() { 
             return harr[0]; 
         }
+
+        void heapsort(){
+            int n = heap_size;
+            vector<int> sorted;
+            while(heap_size>0){
+                swap(harr[0],harr[heap_size-1]);
+                heap_size--;
+                itr_heapify(0);    
+            }
+            heap_size = n;
+        }
+
+        void print(){
+            for(int i=0; i<heap_size; i++){
+                cout<<harr[i]<<" ";
+            }
+            cout<<endl;
+        }
+
 };
 
 int main(){
-    
+    MaxHeap h(10);
+    h.insertKey(3);
+    h.print();
+    h.insertKey(2);
+    h.print();
+    h.insertKey(15);
+    h.print();
+    h.insertKey(5);
+    h.print();
+    h.insertKey(4);
+    h.print();
+    h.insertKey(45);
+    h.print();
+    h.insertKey(12);
+    h.print();
+    h.insertKey(18);
+    h.print();
+    h.heapsort();
+    h.print();
 }

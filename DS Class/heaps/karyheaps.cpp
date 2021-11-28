@@ -10,8 +10,7 @@ class KaryMaxHeap
 
     public:
 
-        KaryMaxHeap(int cap, int k)
-        {
+        KaryMaxHeap(int cap, int k){
             this->k = k;
             this->capacity = cap;
             heap_size = 0;
@@ -37,8 +36,9 @@ class KaryMaxHeap
         int getMax(){return arr[0];};
         
         void print(){
-            for(int i=0;i<heap_size;i++)
+            for(int i=0;i<heap_size;i++){
                 cout<<arr[i]<<" ";
+            }
             cout<<endl;
         }
 };
