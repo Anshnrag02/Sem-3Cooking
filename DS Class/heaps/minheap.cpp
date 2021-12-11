@@ -41,8 +41,22 @@ class MinHeap{
 
         void deleteKey(int i);
 
+        int minropes();
+
         void insertKey(int k);
 };
+
+int MinHeap::minropes(){
+    int temp = 0;
+    while(heap_size>1){
+        int min = extractMin();
+        int min2 = extractMin();
+        insertKey(min+min2);
+        temp+=min+min2;
+        cout<<temp<<" "<<heap_size<<endl;
+    }
+    return temp;
+}
 
 void MinHeap::insertKey(int k){
     if (heap_size == capacity){
@@ -111,17 +125,11 @@ void MinHeap::MinHeapify(int i){
 // Driver program to test above functions
 int main()
 {
-    MinHeap h(11);
+    MinHeap h(6);
     h.insertKey(3);
     h.insertKey(2);
-    h.deleteKey(1);
-    h.insertKey(15);
-    h.insertKey(5);
     h.insertKey(4);
-    h.insertKey(45);
-    cout << h.extractMin() << " ";
-    cout << h.getMin() << " ";
-    h.decreaseKey(2, 1);
-    cout << h.getMin();
+    h.insertKey(6);
+    cout << h.minropes();
     return 0;
 }
