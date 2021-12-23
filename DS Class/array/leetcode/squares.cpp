@@ -34,7 +34,6 @@ public:
                 ans.push_back(a[i]*a[i]);
                 --i;
         }
-        
         return ans;
     }
 };
