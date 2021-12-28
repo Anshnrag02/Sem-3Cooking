@@ -60,26 +60,53 @@ ll power(ll x, ll y, ll p)
 } 
 */
 
+void solver( vector<int>&count_cap, vector<int>&v, int x, int i ){
+	
+}
+
 int32_t main()
 {
-fio;
-test(t)
-{
-    int a ,b,count=0;
-    cin>>a>>b;
-    if(a==b){
-        cout<<0<<endl;
+    fio;
+	int t; cin>>t;
+
+    while(t--)
+    {
+		int n , k ; 
+		cin>>n>>k;
+		int temp;
+		vi v;
+		for(int i = 0 ; i < n ; ++i){
+				cin>>temp;
+				v.push_back(temp);
+		}
+        if(n==1){
+			cout<<v[0]-k<<endl;
+		}else{
+			sort(v.begin(),v.end());
+			int sum = 0 ; 
+			int moves = 0,min_moves=INT_MAX;
+			for(int i = 0 ; i <n ; ++ i){
+				sum+=v[i];
+			}
+			while(k<(v[0]*n)){
+				v[0]--;
+				moves++;
+				sum--;
+			}
+			int temp_sum=sum;
+			for(i = n-1; i>0; --i){
+				temp_sum+=v[0];
+				temp_sum-=v[i];
+				moves++;
+				if(k>=temp_sum){
+					break;
+				}
+			}
+			int prev_moves = moves;
+			while(prev_moves>=moves)
+			
+
+			cout<<moves<<endl;
+		}
     }
-    else{
-        if (a>b){
-            swap(a,b);
-        }
-        count=(b-a)/10;
-        if(a%10==b%10)
-            cout<<count<<endl;
-        else
-           cout<<1+count<<endl;
-    } 
-    
-}
 }
