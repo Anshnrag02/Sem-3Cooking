@@ -97,8 +97,8 @@ int32_t main()
                     s.insert(v[i][2]);
                     ans.push_back(v[i][2]);
                 }else if(s.find(v[i][2])!=s.end() and s.find(v[i][1])==s.end()){
-                    s.insert(v[i][2]);
-                    ans.push_back(v[i][2]);
+                    s.insert(v[i][1]);
+                    ans.push_back(v[i][1]);
                 }else{
                     for(int j = v[i][1]; j <= v[i][2] ; j ++ ){
                         if(s.find(j) == s.end()){
@@ -108,12 +108,12 @@ int32_t main()
                     }
                 }
             }
-
-            for(int i = 0 ; i < n ; i ++ ){
-                cout<<v[i][1]<<" "<<v[i][2]<<" "<<ans[i]<<endl;
-            }
-            cout<<endl;
         }
+
+        for(int i = 0 ; i < n ; i ++ ){
+            cout<<v[i][1]<<" "<<v[i][2]<<" "<<ans[i]<<endl;
+        }
+        cout<<endl;
 
     }
 }
