@@ -23,6 +23,8 @@ class Solution{
         
                 vector<int>temp(m);
                 // here we created a temp just as to keep the cases found in the previous round safe as dp[j] 
+                //might show in reference to a[i] instead of going for the previous cases
+                //if (a[i]+t)%m index is true then it will be considered as a correct case for (a[i]+j)%m for t<j  
                 for(int j = 0 ; j < m ; ++j ){
         
                     if(dp[j]==true){
