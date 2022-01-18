@@ -6,11 +6,11 @@ using namespace std;
 
  // } Driver Code Ends
 // User function Template for C++
-
 class Solution{
 public:
     int maxSquare(int n, int m, vector<vector<int>> mat){
         // code here
+        int ans = 0;
         vector<vector<int>>dp(n+1, vector<int>(m+1,0));
         for(int i = 0 ; i<=n ; ++i){
             for(int j =0 ; j<=m ; j++){
@@ -38,27 +38,27 @@ public:
                         dp[i][j]=0;
                     }
                 }
+
+                ans=max(dp[i][j],ans);
             }
         }
-        for(int i = 0 ; i<=n; i++){
-            for(int j =0 ; j<=m ; ++j){
-                cout<<dp[i][j]<<" ";
-            }
-            cout<<"\n";
-        }
+        // for(int i = 0 ; i<=n; i++){
+        //     for(int j =0 ; j<=m ; ++j){
+        //         cout<<dp[i][j]<<" ";
+        //     }
+        //     cout<<"\n";
+        // }
 
-        cout<<m;
+        // cout<<m;
 
-        return dp[n][m];
+        return ans;
     }
 };
-
 // { Driver Code Starts.
 
 int main(){
-    int t=1;
-    // cin>>t;
-
+    int t;
+    cin>>t;
     while(t--){
         int n, m;
         cin>>n>>m;
