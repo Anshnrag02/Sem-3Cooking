@@ -43,10 +43,10 @@ ll f(ll n,ll m)
 int main()
 {
   ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-//   #ifndef ONLINE_JUDGE
-//     freopen("input.txt", "r", stdin);
-//     freopen("output.txt", "w", stdout);
-//   #endif
+  #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+  #endif
     two=modInverse(2);
   ll T,tt=1,n,i,j,m;
   cin>>T;
