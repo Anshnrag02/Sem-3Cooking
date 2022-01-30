@@ -59,43 +59,60 @@ ll power(ll x, ll y, ll p)
 	return res; 
 } 
 */
-
-bool f(vi &a,vi &v,int m){
-
-
-	
-
-}
-
-
-
 int32_t main()
 {
     fio;
-	int t; cin>>t;
-
+    int t =1;
+	// cin>>t;
     while(t--)
     {
-        int n,k,ans; cin>>n>>k;
-		vi a(n),v(n);
-        for(auto &x:a){
-			cin>>x;
-		}
-		v=a;
-		sort(a.begin(),a.end());
-		int l=0,h=n-1;
-		while(l<=h){
-			int m = (l+h)/2;
-			if(f(a,v,m)){
+        int n , k ; 
+        cin>>n>>k;
+        vi ans(10,0);
+        while(k){
+            int temp = k%10;
+            switch (temp)
+            {
+                case 2:
+                    ans[2]++;
+                    break;
+                case 3:
+                    ans[3]++;
+                    break;
+                case 4:
+                    ans[3]++;
+                    ans[2]+=2;
+                    break;
+                case 5:
+                    ans[5]++;
+                    break;
+                case 6:
+                    ans[5]++;
+                    ans[3]++;
+                    break;
+                case 7:
+                    ans[7]++;
+                    break;
+                case 8:
+                    ans[7]++;
+                    ans[2]+=3;
+                    break;
+                case 9:
+                    ans[7]++;
+                    ans[2]++;
+                    ans[3]+=2;
+                    break;
 
-				ans=m;
-				h=m-1;
 
-			}else{
-				l=m+1;
-			}
-
-
-		}
+                default:
+                    break;
+            }
+            k/=10;
+        }
+        for(int i = 9 ; i > 1 ; --i){
+            for(int j = 0; j < ans[i]; ++j){
+                cout<<i;
+            }
+        }
     }
 }

@@ -77,10 +77,10 @@ int32_t main()
         if(s.length()==1){
             cout<<0;
         }else{
-            count++;
+        
             for(int i = 0 ; i < s.length(); ++i){
                 sum+=(int)(s[i]-'0');
-                
+                count++;
             }
 
             while(sum/10>0){
