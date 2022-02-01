@@ -63,35 +63,20 @@ int32_t main()
 {
     fio;
 	int t =1;
-	// cin>>t;
+	cin>>t;
+
     while(t--)
     {
-        int n;
-        cin>>n;
-        string s;
-        cin>>s;
-        stack<int>s1,s2;
-        s1.push(0);
-        int idx=0;
-        for(int i = 1 ; i <=n ; ++i){
-            if(s[i-1]=='R'){
-                s1.push(i);
-            }
-            else{
-                s2.push(s1.top());
-                s1.pop();
-                s1.push(i);
-            }
+		string s;cin>>s;
+        int count0=0,count1=0;
+        for(int i = 0 ; i<s.length(); ++i){
+            s[i]=='0'?count0++:count1++;
         }
-
-        while(!s1.empty()){
-            s2.push(s1.top());
-            s1.pop();
+        if(count0==count1){
+            cout<<(s.length()/2)-1;
+        }else{
+            cout<<min(count1,count0);
         }
-
-        while(!s2.empty()){
-            cout<<s2.top()<<" ";
-            s2.pop();
-        }
+        cout<<endl;
     }
 }

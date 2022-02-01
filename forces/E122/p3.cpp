@@ -59,39 +59,45 @@ ll power(ll x, ll y, ll p)
 	return res; 
 } 
 */
+
+int ciel(int x, int y){
+	return x/y + (x % y != 0);
+}
+
 int32_t main()
 {
     fio;
 	int t =1;
-	// cin>>t;
+	cin>>t;
+
     while(t--)
     {
-        int n;
-        cin>>n;
-        string s;
-        cin>>s;
-        stack<int>s1,s2;
-        s1.push(0);
-        int idx=0;
-        for(int i = 1 ; i <=n ; ++i){
-            if(s[i-1]=='R'){
-                s1.push(i);
-            }
-            else{
-                s2.push(s1.top());
-                s1.pop();
-                s1.push(i);
-            }
-        }
+		int hc,dc,hm,dm,k,w,a;
+		cin>>hc>>dc>>hm>>dm>>k>>w>>a;
+		int monster_moves = ciel(hc,dm);
+		int char_moves = ciel(hm,dc);
+		if (char_moves<=monster_moves){
+			cout<<"YES";
+		}
+		else{
+			bool dead=false;
+			hc=hc+k*a;
+			for(int i = 0 ; i<=k; ++i)
+			{
+				// cout<<ciel(hc,dm)<<" "<<ciel(hm,dc)<<endl;
+					
+				if(ciel(hc,dm)>=ciel(hm,dc)){
+					// cout<<hc<<" "<<dc;
+					dead=true;
+					break;
+				}
+				hc-=a;
+				dc+=w;
+			}
+			dead?cout<<"YES":cout<<"NO";
 
-        while(!s1.empty()){
-            s2.push(s1.top());
-            s1.pop();
-        }
+		}
+		cout<<endl;
 
-        while(!s2.empty()){
-            cout<<s2.top()<<" ";
-            s2.pop();
-        }
     }
 }

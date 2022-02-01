@@ -59,39 +59,62 @@ ll power(ll x, ll y, ll p)
 	return res; 
 } 
 */
+
+int fun(int i , int k , vector<vi> & a, vector<vi>&dp,int n){
+
+    if(i==n)
+        return 0; 
+    if(dp[i][k]!=-1)
+        return dp[i][k];
+    if(k>=a[i][0])
+        return dp[i][k] = max(a[i][1]+fun(i+1,k-a[i][0],a,dp,n),fun(i+1,k,a,dp,n));
+    return dp[i][k] = fun(i+1,k,a,dp,n);
+}
+
 int32_t main()
 {
     fio;
 	int t =1;
-	// cin>>t;
-    while(t--)
-    {
-        int n;
-        cin>>n;
-        string s;
-        cin>>s;
-        stack<int>s1,s2;
-        s1.push(0);
-        int idx=0;
-        for(int i = 1 ; i <=n ; ++i){
-            if(s[i-1]=='R'){
-                s1.push(i);
-            }
-            else{
-                s2.push(s1.top());
-                s1.pop();
-                s1.push(i);
-            }
-        }
-
-        while(!s1.empty()){
-            s2.push(s1.top());
-            s1.pop();
-        }
-
-        while(!s2.empty()){
-            cout<<s2.top()<<" ";
-            s2.pop();
+	cin>>t;
+    vi moves(1002,INT_MAX);
+    int f=1;
+    moves[1]=0;
+    for(int i = 1 ; i < 1002 ; i++ ){
+        for(int j =1 ; j <=i ; j++){
+                if(i+i/j<1002)
+                    moves[i+(i/j)]=min(moves[i+(i/j)],1+moves[i]);
         }
     }
+    while(t--)
+    {
+		int n,k,temp;
+        cin>>n>>k;
+        vector<vi> a(n, vi(2));
+        for(int i  = 0 ; i < n ; ++i){
+            cin>>temp;
+            a[i][0]=moves[temp];
+            // cout<<a[i][0]<<endl;
+        }
+        for(int i = 0 ; i  < n ; ++i ){
+            cin>>a[i][1];
+        }
+        vector<vi>dp(n+1,vi(k+1,-1));
+        // for(int i = 0 ; i <n ; ++i ){
+        //     for(int j = k ; j>=0 ; --j){
+        //         if(j>=a[i][0])
+        //             dp[j]=max(dp[j], dp[j-a[i][0]]+a[i][1]);
+        //     }
+        // }
+
+        int ans = fun(0,k, a, dp, n);
+        cout<<ans<<endl;
+
+        // for(int i = 0 ; i <=k ; ++i){
+        //     cout<<dp[i]<<endl;
+        // }
+
+        // cout<<dp[k]<<endl;
+
+    }
+    
 }
