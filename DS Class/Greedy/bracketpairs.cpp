@@ -25,9 +25,16 @@ int solver(string s){
         }
 
         if(count<0){
-            
+            ans+=pos[p]-i;
+            swap(s[i],s[pos[p]]);
+            p++;
+
+            count = 1;
         }
     }
+
+
+    return ans;
 
 
 }
