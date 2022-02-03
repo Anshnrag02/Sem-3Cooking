@@ -59,15 +59,19 @@ ll power(ll x, ll y, ll p)
 	return res; 
 } 
 */
+void bruh(queue<int>&a,queue<int>&b){
+    int f=a.front();
+    int g = b.front();
+    b.pop();
+    a.pop();
+    a.push(g);
+    a.push(f);
 
+}
 
-
-bool T_T(int m,int rec[],int n[], int p[])
-{
-    int price = 0 ;
-    ifor(0,3)
-        price+=max((int)0,((m*rec[i])-n[i]))*p[i]; 
-    return price<=r;
+int nc2(int n){
+    if(n<=1) return 0;
+    return (n*(n-1))/2;
 }
 
 int32_t main()
@@ -77,38 +81,82 @@ int32_t main()
 	// cin>>t;
     while(t--)
     {
-        string s;cin>>s;
-        int rec[3]={0,0,0},n[3]={0,0,0},p[3]={0,0,0};
-        ifor(0,3) cin>>n[i];
-        ifor(0,3) cin>>p[i];
-        int r; cin>>r;
-        ifor(0,s.length()){
-            if(s[i]=='B')
-                rec[0]++;
-            else if (s[i]=='S')
-            {
-                rec[1]++;
+
+        int n;
+        cin >>n;
+        vector<vi>a(n,vi(2));
+        
+        for(int i = 0 ; i<n; i++){
+            cin>>a[i][0]>>a[i][1];
+        }
+        
+        sort(a.begin(),a.end());
+        int count=1;
+        int ans = 0 ;
+        for(int i = 1 ; i<n ; ++i){
+
+            if(a[i][0]==a[i-1][0]){
+                count++;
             }
             else{
-                rec[2]++;
+                ans+=nc2(count);
+                count=1;
             }
+
         }
-        int l = 0; 
-        int h = 1e15;
-        while(h-l>1){
-            
-            int m = l + (h-l)/2;
-            // int price = 0 ;
-            // ifor(0,3e+=max((int)0,((m*rec[i])-n[i]))*p[i]; 
-            if(T_T(m,rec,n,p))
-                l=m;
-            else
-                h=m-1;
+
+        if(count){
+            ans+=nc2(count);
         }
-        if(T_T(h,rec,n,p))
-            cout<<h;
-        else
-            cout<<l;
+
+        // cout<<ans;
+
+        count =1;
+
+        for(int i = 0 ; i < n ; ++ i){
+            swap(a[i][0],a[i][1]);
+        }
+
+        sort(a.begin(),a.end());
+
+        for(int i = 1 ; i<n ; ++i){
+
+            if(a[i][0]==a[i-1][0]){
+                count++;
+            }
+            else{
+                ans+=(nc2(count));
+                count=1;
+            }
+
+        }
+
+        if(count){
+            ans+=(nc2(count));
+        }
+
+
+        count = 1;
+
+        for(int i = 1 ; i<n ; ++i){
+
+            if(a[i][0]==a[i-1][0] and a[i][1]==a[i-1][1]){
+                count++;
+            }
+            else{
+                ans-=(nc2(count));
+                count=1;
+            }
+
+        }
+
+        if(count){
+            ans-=(nc2(count));
+        }
+
+
+        cout<<ans;
+
     }
 
 }

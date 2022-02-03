@@ -59,16 +59,20 @@ ll power(ll x, ll y, ll p)
 	return res; 
 } 
 */
+// void bruh(queue<int>&a,queue<int>&b){
+//     int f=a.front();
+//     int g = b.front();
+//     b.pop();
+//     a.pop();
+//     a.push(g);
+//     a.push(f);
 
+// }
 
-
-bool T_T(int m,int rec[],int n[], int p[])
-{
-    int price = 0 ;
-    ifor(0,3)
-        price+=max((int)0,((m*rec[i])-n[i]))*p[i]; 
-    return price<=r;
-}
+// int nc2(int n){
+//     if(n<=1) return 0;
+//     return (n*(n-1))/2;
+// }
 
 int32_t main()
 {
@@ -77,38 +81,42 @@ int32_t main()
 	// cin>>t;
     while(t--)
     {
-        string s;cin>>s;
-        int rec[3]={0,0,0},n[3]={0,0,0},p[3]={0,0,0};
-        ifor(0,3) cin>>n[i];
-        ifor(0,3) cin>>p[i];
-        int r; cin>>r;
-        ifor(0,s.length()){
-            if(s[i]=='B')
-                rec[0]++;
-            else if (s[i]=='S')
-            {
-                rec[1]++;
-            }
-            else{
-                rec[2]++;
-            }
+        int a,b;
+        cin>>a>>b;
+        int a_235[3]={0,0,0},b_235[3]={0,0,0};
+        while(a%2==0){
+            a_235[0]++;
+            a/=2;
         }
-        int l = 0; 
-        int h = 1e15;
-        while(h-l>1){
-            
-            int m = l + (h-l)/2;
-            // int price = 0 ;
-            // ifor(0,3e+=max((int)0,((m*rec[i])-n[i]))*p[i]; 
-            if(T_T(m,rec,n,p))
-                l=m;
-            else
-                h=m-1;
+        while(b%2==0){
+            b_235[0]++;
+            b/=2;
         }
-        if(T_T(h,rec,n,p))
-            cout<<h;
-        else
-            cout<<l;
+        while(a%3==0){
+            a_235[1]++;
+            a/=3;
+        }   
+        while(b%3==0){
+            b_235[1]++;
+            b/=3;
+        }
+        while(a%5==0){
+            a_235[2]++;
+            a/=5;
+        }   
+        while(b%5==0){
+            b_235[2]++;
+            b/=5;
+        }   
+        if(a==b){
+            int ans = 0 ;
+            for(int i = 0 ; i < 3 ; ++i){
+                ans+=abs(a_235[i]-b_235[i]);
+            }
+            cout<<ans;
+        }else{
+            cout<<-1;
+        }
     }
 
 }

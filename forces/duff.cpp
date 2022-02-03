@@ -59,15 +59,25 @@ ll power(ll x, ll y, ll p)
 	return res; 
 } 
 */
+int k=1;
 
+int nextdiv(int n){
+	do{
+		k++;
+	}while(n%k!=0);
+	return n/k;
+}
 
-
-bool T_T(int m,int rec[],int n[], int p[])
-{
-    int price = 0 ;
-    ifor(0,3)
-        price+=max((int)0,((m*rec[i])-n[i]))*p[i]; 
-    return price<=r;
+bool Test(int n,int f){
+	while
+	
+	while(f>1){
+		if(n%(f*f)==0){
+			return false;
+		}
+		--f;
+	}
+	return true;
 }
 
 int32_t main()
@@ -77,38 +87,16 @@ int32_t main()
 	// cin>>t;
     while(t--)
     {
-        string s;cin>>s;
-        int rec[3]={0,0,0},n[3]={0,0,0},p[3]={0,0,0};
-        ifor(0,3) cin>>n[i];
-        ifor(0,3) cin>>p[i];
-        int r; cin>>r;
-        ifor(0,s.length()){
-            if(s[i]=='B')
-                rec[0]++;
-            else if (s[i]=='S')
-            {
-                rec[1]++;
-            }
-            else{
-                rec[2]++;
-            }
-        }
-        int l = 0; 
-        int h = 1e15;
-        while(h-l>1){
-            
-            int m = l + (h-l)/2;
-            // int price = 0 ;
-            // ifor(0,3e+=max((int)0,((m*rec[i])-n[i]))*p[i]; 
-            if(T_T(m,rec,n,p))
-                l=m;
-            else
-                h=m-1;
-        }
-        if(T_T(h,rec,n,p))
-            cout<<h;
-        else
-            cout<<l;
+        int n;
+		cin>>n;
+		int temp=n;
+        int sq = (int)sqrt(n);
+		while(!Test(temp,sq)){
+			
+			temp=nextdiv(n);
+			sq=(int)sqrt(n);
+		}
+		cout<<n; 
     }
 
 }

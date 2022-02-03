@@ -59,7 +59,7 @@ ll power(ll x, ll y, ll p)
 	return res; 
 } 
 */
-
+int r;
 
 
 bool T_T(int m,int rec[],int n[], int p[])
@@ -81,7 +81,7 @@ int32_t main()
         int rec[3]={0,0,0},n[3]={0,0,0},p[3]={0,0,0};
         ifor(0,3) cin>>n[i];
         ifor(0,3) cin>>p[i];
-        int r; cin>>r;
+        cin>>r;
         ifor(0,s.length()){
             if(s[i]=='B')
                 rec[0]++;

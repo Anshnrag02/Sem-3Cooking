@@ -61,15 +61,6 @@ ll power(ll x, ll y, ll p)
 */
 
 
-
-bool T_T(int m,int rec[],int n[], int p[])
-{
-    int price = 0 ;
-    ifor(0,3)
-        price+=max((int)0,((m*rec[i])-n[i]))*p[i]; 
-    return price<=r;
-}
-
 int32_t main()
 {
     fio;
@@ -93,22 +84,40 @@ int32_t main()
                 rec[2]++;
             }
         }
-        int l = 0; 
-        int h = 1e15;
-        while(h-l>1){
-            
-            int m = l + (h-l)/2;
-            // int price = 0 ;
-            // ifor(0,3e+=max((int)0,((m*rec[i])-n[i]))*p[i]; 
-            if(T_T(m,rec,n,p))
-                l=m;
-            else
-                h=m-1;
+        int count=0;
+        while(rec[0]<=n[0] and rec[1]<=n[1] and rec[2]<=n[2]){
+            count++;
+            for(int i = 0 ; i < 3 ;++i){
+                n[i]-=rec[i];
+            }
         }
-        if(T_T(h,rec,n,p))
-            cout<<h;
-        else
-            cout<<l;
+        int costburger = 0 ;
+        for(int i = 0 ; i < 3 ; ++i){
+            costburger+=rec[i]*p[i];
+        }
+        int req[3]={0,0,0};
+        while((n[0]>0 or n[1]>0 or n[2]>0)){
+            
+            int cost = 0;
+            ifor(0,3)
+            {
+                if(n[i]>=rec[i]){
+                    n[i]-=rec[i];
+                }
+                else{
+                    cost+=p[i]*(rec[i]-n[i]);
+                    n[i]=0;
+                }
+            }
+            if(cost>r){
+                break;
+            }else{
+                r-=cost;
+                count++;
+            }
+        }
+        count+=((r/costburger));
+        cout<<count;
     }
 
 }

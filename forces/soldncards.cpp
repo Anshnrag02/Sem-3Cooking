@@ -59,16 +59,16 @@ ll power(ll x, ll y, ll p)
 	return res; 
 } 
 */
+void bruh(queue<int>&a,queue<int>&b){
+    int f=a.front();
+    int g = b.front();
+    b.pop();
+    a.pop();
+    a.push(g);
+    a.push(f);
 
-
-
-bool T_T(int m,int rec[],int n[], int p[])
-{
-    int price = 0 ;
-    ifor(0,3)
-        price+=max((int)0,((m*rec[i])-n[i]))*p[i]; 
-    return price<=r;
 }
+
 
 int32_t main()
 {
@@ -77,38 +77,38 @@ int32_t main()
 	// cin>>t;
     while(t--)
     {
-        string s;cin>>s;
-        int rec[3]={0,0,0},n[3]={0,0,0},p[3]={0,0,0};
-        ifor(0,3) cin>>n[i];
-        ifor(0,3) cin>>p[i];
-        int r; cin>>r;
-        ifor(0,s.length()){
-            if(s[i]=='B')
-                rec[0]++;
-            else if (s[i]=='S')
-            {
-                rec[1]++;
-            }
-            else{
-                rec[2]++;
-            }
+		int n; cin>>n;
+        int k,m,temp;
+        cin>>k;
+        queue<int>a;
+        for(int i = 0 ; i  <k ; ++i){
+            cin>>temp;
+            a.push(temp);
         }
-        int l = 0; 
-        int h = 1e15;
-        while(h-l>1){
+        cin>>m;
+        queue<int>b;
+        for(int i = 0 ; i < m  ; ++i){
+            cin>>temp;
+            b.push(temp);
+        }
+        int i = 0;
+        for(i = 0 ; i<110; ++i){
             
-            int m = l + (h-l)/2;
-            // int price = 0 ;
-            // ifor(0,3e+=max((int)0,((m*rec[i])-n[i]))*p[i]; 
-            if(T_T(m,rec,n,p))
-                l=m;
+            if(a.size()==0){
+                cout<<i<<" "<<2<<endl;
+                return 0;
+            }else if(b.size()==0){
+                cout<<i<<" "<<1<<endl;
+                return 0;
+            }
+            
+            if(a.front()>b.front())
+                bruh(a,b);
             else
-                h=m-1;
+                bruh(b,a);
         }
-        if(T_T(h,rec,n,p))
-            cout<<h;
-        else
-            cout<<l;
-    }
 
+        cout<<-1;
+
+    }
 }
