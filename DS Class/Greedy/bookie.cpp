@@ -28,6 +28,7 @@ int main(){
                 ans.push_back(a[i][1]);
         }
     }
+    
     if(k>=ans.size());
         cout<<"yes";
     else
