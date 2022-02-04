@@ -455,9 +455,9 @@ int main() {
  
     vamos;
  
-// #ifndef asr_debug
+#ifndef asr_debug
     cin.tie(nullptr);
-// #endif
+#endif
  
     fix(15);
     // prepareFact(_);
