@@ -103,7 +103,7 @@ int32_t main()
             }
         }
 
-        cout<<dasha<<masha;
+        // cout<<dasha<<masha;
 
 
         (masha>dasha)?cout<<"Masha":(masha==dasha)?cout<<"Equal":cout<<"Dasha";
