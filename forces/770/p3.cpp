@@ -84,7 +84,7 @@ int32_t main()
 		int n;
         int k;
         cin>>n>>k;
-        if(k==1)
+        
 
     }
 }
