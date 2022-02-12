@@ -1,0 +1,37 @@
+class Solution {
+public:
+    string removeKdigits(string num, int k) {
+        if(k==num.length()) return "0";
+        stack<int> st{};
+        string str{};
+        int i{};
+        //If next element is lesser than previous that means previous element has higher priority,so it should be removed.
+        while(i<num.length() && k){
+            while(k>0 && st.size() && num[i]-'0'<st.top()){
+                st.pop();
+                k--;
+            }
+            st.push(num[i]-'0');
+            i++;
+        }
+        // If there are still elements to be removed,then remove from stack
+        while(k){
+            st.pop();
+            k--;
+        }
+        while(st.size()){
+            str+=to_string(st.top());
+            st.pop();
+        }
+        reverse(str.begin(),str.end());
+        while(i<num.size()){
+            str+=num[i];
+            i++;
+        }
+        
+        i=0;
+        while(str[i]=='0') i++;
+        str.erase(str.begin(),str.begin()+i);
+        return (str.length()==0)?"0":str;
+    }
+};
