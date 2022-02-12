@@ -3,8 +3,8 @@ using namespace std;
 
 #define ll long long
 
-ll int main(){
-    ll int n,temp,area,max_area=ll int_MIN;
+int main(){
+    ll int n,temp,area,max_area=INT_MIN;
     cin>>n;
     stack<ll int>s;
     vector<ll int>a;
@@ -29,7 +29,6 @@ ll int main(){
                 }
                 else{
                     area=a[temp]*(i-s.top()-1);
-                
                     max_area=max(max_area,area);
                 }
                 
