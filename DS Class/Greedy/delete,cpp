@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int minDeletions(string s) {
+        unordered_map<char,int>m;
+        for(int i = 0 ; i < s.length() ; ++i){
+            m[s[i]]++;
+        }
+        priority_queue<int>maxheap;
+        
+        for(auto it:m){
+            maxheap.push(it.second);
+        }
+        int count = 0 ;
+        while(maxheap.size()>1){
+                int a = maxheap.top();
+                maxheap.pop();
+                while(maxheap.size() and maxheap.top()==a){
+                    maxheap.pop();
+                    count++;
+                    if(a>1){
+                        maxheap.push(a-1);
+                    }
+                }
+        }
+        return count;
+    }
+};

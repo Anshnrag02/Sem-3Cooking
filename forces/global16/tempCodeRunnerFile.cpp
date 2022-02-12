@@ -74,10 +74,10 @@ int32_t main()
         }
         int largest = 0 , smallest = 0 ;
         for(int i = 0; i < n ; ++i){
-            largest=a[i]>a[largest]?i:largest;
-            smallest=a[i]<a[smallest]?i:smallest;
+            largest=a[i]>=a[largest]?i:largest;
+            smallest=a[i]<=a[smallest]?i:smallest;
         }
-        if(largest < smallest ){
+        if(largest < smallest){
             cout<<"YES\n";
         }
         else{
