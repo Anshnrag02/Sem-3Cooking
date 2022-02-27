@@ -1,13 +1,13 @@
-# def isPalindrome(s):
-#     return s == s[::-1]
+def isPalindrome(s):
+    return s == s[::-1]
 
-# def isDoublePalindrome(m):
-#     for n in range(1,m+1):
-#         if isPalindrome(str(n)) and isPalindrome(str(n*n)):
-#             print(n)
+def isDoublePalindrome(m):
+    for n in range(m+1):
+        if isPalindrome(str(n)) and isPalindrome(str(n*n)):
+            print(n)
 
-# a=int(input())
-# isDoublePalindrome(a)
+a=int(input())
+isDoublePalindrome(a)
 
 import numpy as np
  
