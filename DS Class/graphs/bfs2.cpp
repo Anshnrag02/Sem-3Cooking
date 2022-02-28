@@ -50,36 +50,6 @@ class Graph{
                 }
             }
         }
-        
-
-        void bft(int source){
-            unordered_set<int>s;
-            queue<int>q;
-            q.push(source);
-            s.insert(source);
-            q.push(-1);
-            while(!q.empty()){ 
-                if(q.front()==-1){
-                    q.pop();
-                    if(q.size())
-                        q.push(-1);
-                    cout<<endl;
-                }
-                else{
-                    cout<<q.front()<<" ";
-                    for( int val : l[q.front()] ){
-                        if(s.find(val)==s.end())
-                        {
-                            q.push(val);    
-                        }
-                        s.insert(val);
-                    }
-                    q.pop();
-                }
-            }
-        }
-
-
 };
 
 
@@ -94,7 +64,7 @@ int main(){
     g.addEdge(3,5);
     g.addEdge(3,4);
     g.addEdge(5,6);
-    g.bft(6);
+    g.bft2(6);
 }
 
 //BFS 
