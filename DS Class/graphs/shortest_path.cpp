@@ -65,11 +65,22 @@ class Graph{
                 }
             }
             //
-            for(int i = 0 ; i < v ; ++i){
-                cout<<i<<"-->"<<dist[i];
+            cout<<endl;
+            for(int i = 0 ; i < V ; ++i){
+                cout<<i<<"-->"<<dist[i]<<endl;
             }
 
             //
+            for(int i = 0 ; i < V ; ++i){
+                cout<<i<<"-->";
+                int j = i;
+                while(j!=parent[j])
+                {
+                    j=parent[j];
+                    cout<<j<<" ";
+                }
+                cout<<endl;
+            }
         }
 };
 
