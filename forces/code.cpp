@@ -78,7 +78,7 @@ int32_t main()
             u.insert({x[i],y[i]});
         }
         for(int i = 0 ; i < n ; ++i){
-            int xdis=0,xdis2=0,ydis=INT_MAX;
+            int xdis=0,xdis2=0,ydis=0;
             int itr = 1; 
             while(s.find({xy[i].first+itr,xy[i].second})!=s.end()){
                 itr++;
@@ -89,6 +89,7 @@ int32_t main()
                 itr++;
                 xdis2++;
             }
+            int xf = xdis<xdis2?xy[i]+
         }
     }
 }

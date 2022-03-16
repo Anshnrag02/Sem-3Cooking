@@ -59,6 +59,7 @@ ll power(ll x, ll y, ll p)
 	return res; 
 } 
 */
+
 vector<string>a(10001);
 
 int32_t main()

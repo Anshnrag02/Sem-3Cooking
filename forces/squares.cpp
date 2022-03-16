@@ -63,8 +63,17 @@ vector<string>a(10001);
 
 bool findcase(int n , int m){
 
-	
-
+	if(n==1 or m == 1)
+		return true;
+	int sum ;
+	for(int i = 0 ; i < n-1 ; i++ ){
+		for(int j = 0; j<m-1 ; j++ ){
+			sum = a[i][j]+a[i][j+1]+a[i+1][j]+a[i+1][j+1]-4*(int)'0';
+			if(sum == 3)
+				return false;
+		}
+	}
+	return true;
 }
 
 int32_t main()
@@ -79,8 +88,8 @@ int32_t main()
         for(int i = 0 ; i < n ; i++){
             cin>>a[i];
         }
-        if(findcase(n,m)){
-			cout<<"No\n"
+        if(!findcase(n,m)){
+			cout<<"No\n";
 		}
 		else{
 			cout<<"Yes\n";
