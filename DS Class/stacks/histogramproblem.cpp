@@ -1,50 +1,29 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define ll long long
+#define int long long int
 
-int main(){
-    ll int n,temp,area,max_area=INT_MIN;
-    cin>>n;
-    stack<ll int>s;
-    vector<ll int>a;
-    for(ll int i = 0 ; i < n ; ++ i) {
-        cin>>temp;
-        a.push_back(temp);
+int32_t main(){
+    int n;cin>>n;
+    vector<int>a(n);
+    for(int i = 0 ; i < n ; ++ i){
+        cin>>a[i];
     }
-    s.push(0);
-    for (ll int i = 1 ; i < n ; ++ i){
-        if(a[i]>a[s.top()]){
-            s.push(i);
-        }
-        else{
-            while(a[s.top()]>=a[i]){
-                temp = s.top();
-                s.pop();
-                if(s.empty())
-                {
-                    area=a[temp]*(i);
-                    max_area=max(max_area,area);
-                    break;
-                }
-                else{
-                    area=a[temp]*(i-s.top()-1);
-                    max_area=max(max_area,area);
-                }
-                
-            }
-            s.push(i);
-        }
+    vector<int>rb(n);
+    rb[n-1]=n;
+    for(int i = n-2 ; i>=0 ; --i){
+        
     }
-    while(!s.empty()){
-        temp = s.top();
-        s.pop();
-        if(!s.empty())
-            area=a[temp]*(n-s.top()-1);
-        else
-            area=a[temp]*n;
-        max_area=max(max_area,area);
+
+    vector<int>lb(n);
+    stack<int>l;
+    ln[0]=-1;
+    l.push(-1);
+    for(int )
+
+    max_area = 0;
+    area = 0;
+    for(int i = 0 ; i < n ; ++i ){
+        area(rb[i]-lb[i]+1)*a[i];
     }
-    
-    cout<<max_area;
 }
