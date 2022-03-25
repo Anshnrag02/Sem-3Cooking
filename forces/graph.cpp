@@ -61,49 +61,45 @@ ll power(ll x, ll y, ll p)
 } 
 */
 
-bool palindrome(string s){
-    int i = 0 ; 
-    int j = s.length()-1;
-    while(i<j){
-        if(s[i]!=s[j]){
-            return false;
+void dfs(int i, int c , vector<vector<int>>&adj, vector<int>&wt,vector<bool>&vis){
+    wt[i]=(adj[i].size())*c;
+    // cout<<i<<" "<<wt[i]<<endl;
+    vis[i]=1;
+    for(auto x: adj[i]){
+        if(!vis[x]){
+            dfs(x,-c,adj,wt,vis);
         }
-        ++i;
-        --j;
     }
-    return true;
 }
 
 int32_t main()
 {
     fio;
 	int t=1; 
-    cin>>t;
-
-
-    
+    cin>>t;    
     while(t--)
     {
-        long long n;
+        int n;
 		cin >> n;
  
-		n *= 2;
-		long long x = 1;
-		while (n % 2 == 0) {
-			n /= 2;
-			x *= 2;
-		}
- 
-		if (n == 1) {
-			cout << -1 << '\n';
-		}
-		else if (x > n) {
-			cout << n << '\n';
-		}
-		else {
-			cout << x << '\n';
-		}
+		vector<vector<int>>adj(n);
+        int u,v;
+
+        ifor(0,n-1){
+            cin>>u>>v;
+            u--;v--;
+            adj[u].pb(v);
+            adj[v].pb(u);
+
+        }
+        vector<int>wt(n,0);
+        vector<bool>vis(n,false);
+
+        dfs(0,1,adj,wt,vis);
         
+        ifor(0,n)
+            cout<<wt[i]<<" ";
+        cout<<endl;
     }
 }
 
