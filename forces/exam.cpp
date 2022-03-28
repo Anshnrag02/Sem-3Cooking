@@ -85,18 +85,18 @@ int32_t main()
     fio;
     // ll ttt=-1;
 	int t =1;
-	// cin>>t;
+	cin>>t;
     while(t--)
     {
         int d;
         cin>>n>>d;
         vector<int>a(n+1);
         a[0]=0;
-        int min_pos,mn=1e9;
+        int min_pos,mu=1e9;
         for(int i = 1 ; i <=n ; ++i){
             cin>>a[i];
-            if(a[i]-a[i-1]-1<mn){
-                mn=a[i]-a[i-1]-1;
+            if(a[i]-a[i-1]-1<mu){
+                mu=a[i]-a[i-1]-1;
                 min_pos=i;
             }
         }
@@ -106,17 +106,14 @@ int32_t main()
                 b.pb(a[i]);
             }
         }
-
-        int mu = b[1]-1;
+        // mu = max(b[0]-1,mu);
         for(int i = 0 ; i < b.size()-1; ++i){
-            mu = max((b[i+1]-b[i])/2,mu);
+            mu = max((b[i+1]-b[i]-1)/2,mu);
         }
         mu = max(mu,d-b.back()-1);
-
-        b[min_pos-1]=a[min_pos];
-
+        b[min_pos-2]=a[min_pos];
         for(int i = 0 ; i < b.size()-1; ++i){
-            mu = max((b[i+1]-b[i])/2,mu);
+            mu = max((b[i+1]-b[i]-1)/2,mu);
         }
         mu = max(mu,d-b.back()-1);
 

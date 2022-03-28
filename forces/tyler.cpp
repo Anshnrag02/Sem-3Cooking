@@ -18,7 +18,7 @@ using namespace std;
 #define pqs               priority_queue<int , vi , greater<int>>
 #define setbits(x)        __builtin_popcountll(x)
 #define zrobits(x)        __builtin_ctzll(x)
-#define mod               1000000007
+#define mod               998244353
 #define mod1              mod
 #define mod2              1000000009
 #define inf               1e18
@@ -60,15 +60,6 @@ ll power(ll x, ll y, ll p)
 	return res; 
 } 
 */
-
-int n,c,m;
-
-bool f(int mh,int md, int health , int damage){
-    if(damage*health>md*mh)
-        return 1;
-    return 0;
-}
-
 // bool f(int mh,int md, int health , int damage){
 //     // cout<<"hello";
 //     int heroded = (health/md);
@@ -88,38 +79,28 @@ int32_t main()
 	// cin>>t;
     while(t--)
     {
-        int d;
-        cin>>n>>d;
-        vector<int>a(n+1);
-        a[0]=0;
-        int min_pos,mn=1e9;
-        for(int i = 1 ; i <=n ; ++i){
-            cin>>a[i];
-            if(a[i]-a[i-1]-1<mn){
-                mn=a[i]-a[i-1]-1;
-                min_pos=i;
-            }
+        int n,m;cin>>n>>m;
+        vi a(n),b(m);
+        for(auto &x : a){
+            cin>>x;
         }
-        vector<int>b;
-        for(int i = 1  ; i <=n; ++i ){
-            if(i!=min_pos){
-                b.pb(a[i]);
-            }
+        for(auto &x : b){
+            cin>>x;
         }
-
-        int mu = b[1]-1;
-        for(int i = 0 ; i < b.size()-1; ++i){
-            mu = max((b[i+1]-b[i])/2,mu);
+        map<int,int>m1,m2;
+        for(int i = 0 ; i<n ; ++i){
+            m1[a[i]]++;
         }
-        mu = max(mu,d-b.back()-1);
+        
+        int cnt = 1;
 
-        b[min_pos-1]=a[min_pos];
-
-        for(int i = 0 ; i < b.size()-1; ++i){
-            mu = max((b[i+1]-b[i])/2,mu);
+        for(auto x:m1){
+            m2[x.first]=cnt;
+            cnt++;
         }
-        mu = max(mu,d-b.back()-1);
-
-        cout<<mu<<endl;
+        int ans = 0 ; 
+        for(int i = 0 ; i < m ; ++i){
+            
+        }
     }
 }
