@@ -92,12 +92,37 @@ int32_t main()
     {
         int n; 
         cin>>n;
-        if(n&1==1){
-            cout<<0;
+        bool flag = true;
+
+        vi a(n);
+        for(auto &x : a){
+            cin>>x;
         }
-        else{
-            cout<<a[n];
+        if(n==1){
+            if(a[0]!=1){
+                flag = 0 ;
+            }
+        }else{
+            bool check1=0;
+            int cnt =0;
+            for(int i = 0 ; i < n ; ++i){
+                if(i<n-1 and (a[i+1]-a[i]>1 or (a[i]>a[i+1] and a[i+1]!=1))){
+                    flag=0;
+                    break;
+                }
+                if(a[i]==1){
+                    check1=1;
+                    cnt++;
+                }
+            }
+            if(!check1 or cnt>1){
+                flag = 0;
+            }
         }
+        
+
+        
+        flag? cout<<"yes":cout<<"no";
         cout<<endl;
     }
 }
