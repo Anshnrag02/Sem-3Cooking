@@ -1,3 +1,6 @@
+#include<bits/stdc++.h>
+
+
 class Solution {
 public:
     bool checkSubarraySum(vector<int>& a, int k) {
