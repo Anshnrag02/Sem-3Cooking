@@ -59,98 +59,50 @@ ll power(ll x, ll y, ll p)
 	return res; 
 } 
 */
-
-int countDigit(long long n)
-{
-   if(n == 0)
-     return 1;
-    int count = 0;
-    while (n != 0)
-    {
-        n = n / 10;
-        ++count;
-    }
-    return count;
-}
-
-int mex(int n)
-{
-    int largest = 0;
-    // int smallest = 9;
- 
-    while (n) {
-        int r = n % 10;
- 
-        // Find the largest digit
-        largest = max(r, largest);
- 
-        // Find the smallest digit
-        // smallest = min(r, smallest);
- 
-        n = n / 10;
-    }
-    return largest;
-}
-// int dp[1e18+1];
-
-int solver(int n,int l){
-    if(countDigit(n)==l){
-        return 0;
-    }
-
-    
-
-    int temp = n;
-    int ans = INT_MAX;
-    unordered_set<int>s;
-    while(temp){
-        s.insert(temp%10);
-        temp/=10;
-    }
-    for(auto f:s){
-        if(f>1){
-            ans = min(ans,1+solver(n*f,l));
-        }
-    }
-
-    return ans;
-}
-
-
 int32_t main()
 {
     fio;
 	int t =1;
-	// cin>>t;
+	cin>>t;
 
     while(t--)
     {
-		int n; cin>>n;
-        int x; cin>>x;
-        queue<int>q;
-        map<int,int>m;
-        q.push(x);
-        m[x]=0;
+        int a,b,c,d;
+        cin>>a>>b>>c>>d;
+        string s; cin>>s;
+        int n = s.length();
+        queue<vi>q;
+        bool f=1;
+        q.push({a,b,c,d,0});
         while(!q.empty()){
-            int temp = q.front();
+            vi t = q.front();
             q.pop();
-            string s = to_string(temp);
-            if(s.length()==n){
-                cout<<m[temp]<<endl;
-                return 0;
+            if(t[0]==0 and t[1]==0 and t[2]==0 and t[3]==0 and t[4]==n){
+                cout<<"YES"<<endl;
+                f=0;
+                break;
             }
-            for(auto f:s){
-                if(f>'1'){
-                    int w = temp*(f-'0');
-                    if(!m.count(w)){
-                        q.push(w);
-                        m[w]=m[temp]+1;
-                    }
+            
+            if(s[t[4]]=='A'){
+                if(t[0]>0){
+                    q.push({t[0]-1,t[1],t[2],t[3],t[4]+1});
                 }
-                
+                if(t[4]<n-1 and s[t[4]+1]=='B' and t[2]>0){
+                    q.push({t[0],t[1],t[2]-1,t[3],t[4]+2});
+                }
             }
-
+            else{
+                if(t[1]>0){
+                    q.push({t[0],t[1]-1,t[2],t[3],t[4]+1});
+                }
+                if(t[4]<n-1 and s[t[4]+1]=='A' and t[3]>0){
+                    q.push({t[0],t[1],t[2],t[3]-1,t[4]+2});
+                }
+            }
         }
-        cout<<-1<<endl;
+        if(f==1){
+            cout<<"NO"<<endl;
+        }
+
     }
 }

@@ -124,6 +124,9 @@ int32_t main()
         else if(lminidx>rminidx){
             cout<<min({cost,cost-(cost-lmin),cost-(cost-rmin)})<<endl;
         }
+        else{
+            cout<<min
+        }
 
 
     }

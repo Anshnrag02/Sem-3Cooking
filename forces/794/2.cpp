@@ -59,98 +59,54 @@ ll power(ll x, ll y, ll p)
 	return res; 
 } 
 */
-
-int countDigit(long long n)
-{
-   if(n == 0)
-     return 1;
-    int count = 0;
-    while (n != 0)
-    {
-        n = n / 10;
-        ++count;
-    }
-    return count;
-}
-
-int mex(int n)
-{
-    int largest = 0;
-    // int smallest = 9;
- 
-    while (n) {
-        int r = n % 10;
- 
-        // Find the largest digit
-        largest = max(r, largest);
- 
-        // Find the smallest digit
-        // smallest = min(r, smallest);
- 
-        n = n / 10;
-    }
-    return largest;
-}
-// int dp[1e18+1];
-
-int solver(int n,int l){
-    if(countDigit(n)==l){
-        return 0;
-    }
-
-    
-
-    int temp = n;
-    int ans = INT_MAX;
-    unordered_set<int>s;
-    while(temp){
-        s.insert(temp%10);
-        temp/=10;
-    }
-    for(auto f:s){
-        if(f>1){
-            ans = min(ans,1+solver(n*f,l));
-        }
-    }
-
-    return ans;
-}
-
-
 int32_t main()
 {
     fio;
 	int t =1;
-	// cin>>t;
+	cin>>t;
 
     while(t--)
     {
-		int n; cin>>n;
-        int x; cin>>x;
-        queue<int>q;
-        map<int,int>m;
-        q.push(x);
-        m[x]=0;
-        while(!q.empty()){
-            int temp = q.front();
-            q.pop();
-            string s = to_string(temp);
-            if(s.length()==n){
-                cout<<m[temp]<<endl;
-                return 0;
-            }
-            for(auto f:s){
-                if(f>'1'){
-                    int w = temp*(f-'0');
-                    if(!m.count(w)){
-                        q.push(w);
-                        m[w]=m[temp]+1;
-                    }
-                }
-                
-            }
-
+        int n,cnt=0; cin>>n;
+        vi a(n);
+        ifor(0,n){
+            cin>>a[i];
         }
-        cout<<-1<<endl;
+        sort(a.begin(),a.end());
+        vi b(n);
+        int j=0;
+        int k=(n+1)/2;
+        for(int i = 0 ; i < n ; ++i){
+            if(i%2==0){
+                b[i]=a[j];
+                j++;
+            }
+            else{
+                b[i]=a[k];
+                k++;
+            }
+        }
+        bool flag = 0; 
+        for(int i = 1 ; i < n ; ++i){
+            if(((b[i]>b[(i+1)%n] and b[i]>b[(i-1)%n]) or (b[i]<b[(i+1)%n] and b[i]<b[(i-1)%n]))){
+                continue;
+            }
+            else{
+                // cout<<i<<"FFFFFF";
+                flag = 1;
+                break;
+            }
+        }
+        if(flag)
+        {
+            cout<<"NO"<<endl;
+        }
+        else{
+            cout<<"YES"<<endl;
+            for(auto x:b){
+                cout<<x<<" ";
+            }
+            cout<<endl;
+        }
     }
 }
