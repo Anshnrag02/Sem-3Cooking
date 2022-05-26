@@ -1,3 +1,8 @@
+//Count Binary Strings with No Consecutive 1s 
+
+
+//DP approach O(n)
+
 #include<bits/stdc++.h>
 #define vi vector<int>
 using namespace std;
