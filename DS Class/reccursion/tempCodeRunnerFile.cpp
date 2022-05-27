@@ -1,1 +1,2 @@
-a[n]%(1e9+7)
+n("input.txt", "r", stdin);
+	// freopen("output.txt", "w", stdout);
