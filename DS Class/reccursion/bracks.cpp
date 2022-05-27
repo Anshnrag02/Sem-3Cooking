@@ -1,7 +1,7 @@
-//Pair Friends or keep them single
+//Create all possible legal  bracket pairs
 
 
-//DP approach O(n)
+//DFS approach or Backtracking
 
 #include<bits/stdc++.h>
 #define vi vector<int>
