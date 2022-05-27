@@ -6,7 +6,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int safe(int x , int y , vector<vector<int>> board){
+int safe(int i , int j , vector<vector<int>> board){
     int n=board.size();
     for (int x = 0;x < i;x++){
 		if(board[x][j]!=0)
@@ -32,6 +32,7 @@ int safe(int x , int y , vector<vector<int>> board){
 }
 
 bool NQ(vector<vector<int>> board,int i=0){
+    int n =board.size();
     if(i==board.size()){
         for(int p = 0 ; p < n ; p++){
             for(int q = 0 ; q < n ; q++){
