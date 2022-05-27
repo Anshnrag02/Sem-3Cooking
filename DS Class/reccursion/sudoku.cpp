@@ -21,7 +21,6 @@ bool isSafe(int a[][9], int i, int j, int n, int key){
 bool Solver(int a[][9], int i , int j , int n){
     
     // base case
-    
     if(i==n){
         for(int k =0; k<n ; k++){
             for (int l=0; l<n; ++l){
