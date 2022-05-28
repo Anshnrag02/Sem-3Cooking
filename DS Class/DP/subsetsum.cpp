@@ -3,8 +3,6 @@ using namespace std;
 #define vi vector<int>
 #define vvb vector<vector<bool>>
 
-
-
 int main(){
     int n,sum;
     cin>>n>>sum;
@@ -35,4 +33,5 @@ int main(){
         }
     }
     cout<<dp[n%2][sum];
+    return 0;
 }
