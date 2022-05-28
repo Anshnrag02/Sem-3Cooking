@@ -1,10 +1,22 @@
-int solve(int i = 0 , int j =n-1)
-{
-    if(i>j)
-        return 0;
-    
-    if(dp[i][j]==-1){
-        dp[i][j]=max(a[i]+min(solve(i+2,j),solve(i+1,j-1)),a[j]+min(solve(i+1,j-1),solve(i,j-2)));
-    }
-    return dp[i][j];
-}
+
+// int dp(int i) {
+
+// 	if (i == s.size()) return 1;
+
+// 	if (memo[i] != -1) return memo[i];
+
+// 	int ans = 0;
+// 	if (s[i] >= '1' && s[i] <= '9') {
+// 		ans += dp(i + 1);
+// 	}
+
+// 	if (i + 1 < s.size() && (s[i] == '1')) {
+// 		ans += dp(i + 2);
+// 	}
+
+// 	if (i + 1 < s.size() && (s[i] == '2' && s[i + 1] <= '6')) {
+// 		ans += dp(i + 2);
+// 	}
+
+// 	return memo[i] = ans;
+// }
