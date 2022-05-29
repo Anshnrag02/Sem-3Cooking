@@ -1,6 +1,5 @@
 //GODLEON'S CODE
 #include<bits/stdc++.h>
-// #include <boost/math/common_factor.hpp>
 using namespace std;
 
 #define ff                first
@@ -60,13 +59,6 @@ ll power(ll x, ll y, ll p)
 	return res; 
 } 
 */
-
-int gcd(int a, int b) {
-   if (b == 0)
-   return a;
-   return gcd(b, a % b);
-}
-
 int32_t main()
 {
     fio;
@@ -74,8 +66,25 @@ int32_t main()
 	// cin>>t;
     while(t--)
     {
-		int n;
-        vector<string>a(n);
-        for(int i)
+        int n,m;
+        cin>>n>>m;
+        int l=1;
+        int r=10000000;
+        int mid,ans;
+        while(l<=r){
+            mid = (l+r)/2;
+
+            int x=mid/2;
+            int y=mid/3;
+            int z=mid/6;
+
+            if(x>=n and y>=m and x+y-z>=m+n){
+                ans=mid;
+                r=mid-1;
+            }
+            else l = mid+1;
+
+        }
+        cout<<ans;
     }
 }
