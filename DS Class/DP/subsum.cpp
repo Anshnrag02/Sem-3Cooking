@@ -1,3 +1,7 @@
+//subset sum problem with repetition
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 #define vi vector<int>
@@ -22,7 +26,7 @@ int main(){
             }
             else{
                 if(j>=a[i-1]){
-                    dp[i%2][j]=dp[!(i%2)][j]||dp[!(i%2)][j-a[i-1]];
+                    dp[i%2][j]=dp[!(i%2)][j]||dp[!(i%2)][j-a[i-1]]||dp[(i%2)][j-a[i-1]];
                 }
                 else{
                     dp[i%2][j]=dp[!(i%2)][j];
