@@ -1,3 +1,6 @@
+//Paint house for colors = 3
+// Can easily be extended to colors = k in 2D DP
+
 #include<bits/stdc++.h>
 using namespace std;
 
