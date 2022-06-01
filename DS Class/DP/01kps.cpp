@@ -8,18 +8,14 @@ int dp[100000];
 
 int main(){
     
-    cin>>n>>cap;
+    cin>>cap>>wt;
 
     for(int i = 0 ; i <n ;++i){
-        cin>>a[i];
-    }
-    for(int i = 0 ; i <n ;++i){
-        cin>>wt[i];
+        cin>>wt[i]>>a[i];
     }
     for(int i =0 ; i<=cap ; ++i){
         dp[i]=0;
     }
-
     for(int i =0 ; i<n ;++i){
         for(int j=cap ; j>=0; --j){
             if(wt[i]<=j){
