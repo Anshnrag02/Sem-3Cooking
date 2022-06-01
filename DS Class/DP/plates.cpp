@@ -4,7 +4,7 @@ int n,k,p;
 int dp[1000][1000];
 
 int f(vector<vector<int>>&a, int idx, int p){
-    if(idx==n){
+    if(idx==n or p==0){
         return 0;
     }
     
