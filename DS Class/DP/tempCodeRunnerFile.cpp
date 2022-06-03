@@ -1,22 +1,22 @@
-
-// int dp(int i) {
-
-// 	if (i == s.size()) return 1;
-
-// 	if (memo[i] != -1) return memo[i];
-
-// 	int ans = 0;
-// 	if (s[i] >= '1' && s[i] <= '9') {
-// 		ans += dp(i + 1);
-// 	}
-
-// 	if (i + 1 < s.size() && (s[i] == '1')) {
-// 		ans += dp(i + 2);
-// 	}
-
-// 	if (i + 1 < s.size() && (s[i] == '2' && s[i + 1] <= '6')) {
-// 		ans += dp(i + 2);
-// 	}
-
-// 	return memo[i] = ans;
-// }
+nt i = n-1; i>=0; --i){
+            for(int j = i ; j<n ; ++j){
+                if(i==j){
+                    dp[i][j]=0;
+                }
+                else if(i+1==j){
+                    if(s[i]==s[j])
+                        dp[i][j]=0;
+                    else{dp[i][j]=1;}
+                }
+                else{
+                    if(s[i]==s[j] and dp[i+1][j-1]==0){
+                        dp[i][j]=0;
+                    }
+                    else {
+                        for(int k = i ; k<=j ;++k){
+                            dp[i][j]=min(1+dp[i][k]+dp[k][j],dp[i][j]);
+                        }
+                    }
+                }
+            }
+        }
