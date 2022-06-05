@@ -101,49 +101,23 @@ const ll mod = 1000000007;
 // }
  
  
-void f(){
-    
-
-}
 int32_t main() {
     fast1;
     fast2;
     int t=1;
     cin>>t;
     while(t--){
-        int n;
-        cin>>n;
+        int n; cin>>n;
         vi a(n);
-        FOR(i,0,n){
-            cin>>a[i];
+        for(auto &x:a){
+            cin>>x;
+            x=__builtin_ffs(x)-1;
         }
-        int cnte = 0;
-        for(int i = 0;i<n;i++){
-            if(a[i]%2!=0)cnte++;
-        }
-        if(cnte == 0){
-            for(int i = 0;i<n;i++){
-                int temp = 0;
-                while(a[i]%2 == 0){
-                    temp++;
-                    a[i]/=2;
-                }
-                a[i] = temp;
-            }
-            auto c = n-1+*min_element(a.begin(),a.end());
-            cout<<c;
-        }
-        else if(n == 1){
-            int temp= 0;
-                while(a[0]%2 == 0){
-                    temp++,a[0]/=2;
-                }
-            cout<<temp;
-        }
-        else {
-            cout<<n-cnte;
-        }
-        cout<<endl;
+        int r=max(*min_element(a.begin(),a.end())-1,0);
+        for(auto x:a) r+=(x>0);
+        cout<<r<<endl;
+
+
     }
     return 0; 
 }
