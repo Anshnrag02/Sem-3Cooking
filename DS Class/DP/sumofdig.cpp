@@ -1,31 +1,47 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long int
+string n;
+int dp[10][2][73];
+
+
+int solve(int idx, int last, int sum){
+    if(idx==n.size())
+        return sum;
+    
+    if(dp[idx][last][sum]!=-1) return dp[idx][last][sum];
+
+    int till = last? n[idx]-'0' : 9;
+
+    int ans=0;
+    for(int i = 0 ; i <= till ; ++i){
+        ans+=solve(idx+1,last&&(i==till),sum+i);
+    }
+    return dp[idx][last][sum]=ans;
+}
+
+
+int f(int x){
+    n=to_string(x);
+    for(int i=0 ; i < n.length() ; ++i){
+        for(int j = 0 ; j<=1 ; ++j){
+            for(int k=0; k<=72; ++k){
+                dp[i][j][k]=-1;
+            }
+        }
+    }
+    return solve(0,1,0);
+}
 
 signed main(){
-    int a[1001],b[1001];
-    for(int i=0 ; i<1001; ++i){
-        if(i<10)
-            a[i]=i;
-        else{
-            a[i]=a[i-10]+1;
-        }
-    }
-    for(int i=0 ; i<1001; ++i){
-        if(i==0)
-            b[i]=a[i];
-        else{
-            b[i]=a[i]+b[i-1];
-        }
-    }
-    while(1){
-        int a,x;
-        cin>>a>>x;
+   while(1){
+        int a,b;
+        cin>>a>>b;
         
-        if(a==-1 and x==-1) break;
+        if(a==-1 and b==-1) break;
 
 
-        cout<<f(x)-f(a-1)<<endl;
+        cout<<f(b)-f(a-1)<<endl;
     
     }
 }
