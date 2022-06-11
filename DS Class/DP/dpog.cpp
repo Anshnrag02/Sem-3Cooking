@@ -4,15 +4,16 @@ using namespace std;
 int n , m , k;
 vector<vector<bool>>vis(1001,vector<bool>(1001,0));
 vector<vector<int>>a(1001,vector<int>(1001,0));
-vector<vector<int>>mindp(1001,vector<int>(1001,0));
+vector<vector<int>>mindp(1001,vector<int>(1001,-1));
+vector<vector<int>>maxdp(1001,vector<int>(1001,-1));
 
-pair<int,int> f(int i=0 , int j=0){
+int f(int i=0 , int j=0){
     
     if(i==n-1 and j == m-1){
         return dp[i][j]={0,0};
     }
 
-    if(vis[i][j]==1)
+    if(vis[i][j]==1) return 
 
 
 }
