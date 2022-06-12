@@ -14,6 +14,7 @@ vector<bool>vis2(10000,false);
 //     }
 // }
 
+
 void remove_node(int i){
     cout<<"HERE"<<i<<endl;
     removed[i]=1;
@@ -29,7 +30,9 @@ void remove_node(int i){
 }
 
 void dfs(int s, int d){
-    if(s==d)
+    if(s==d){
+        count++;
+    }
 }
 
 
