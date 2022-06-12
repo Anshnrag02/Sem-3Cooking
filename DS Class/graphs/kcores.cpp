@@ -28,6 +28,11 @@ void remove_node(int i){
     }
 }
 
+void dfs(int s, int d){
+    if(s==d)
+}
+
+
 int main(){
 
     cin>>n>>m>>k;
