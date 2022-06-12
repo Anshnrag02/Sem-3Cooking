@@ -14,6 +14,17 @@ void dfs(int i){
     }
 }
 
+void remove_node(int i){
+    vector<int>t=adj[i];
+    adj[i].clear();
+    for(auto x:t){
+        adj[x].erase(adj[x].find(adj[x].begin(),adj[x].end(),i)-adj[x].begin());
+        if(adj[x].size()<k){
+            remove_node(x);
+        }
+    }
+}
+
 int main(){
 
     cin>>n>>m;
