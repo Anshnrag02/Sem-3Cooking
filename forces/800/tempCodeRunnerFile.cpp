@@ -70,17 +70,21 @@ int32_t main()
 		string a;
 		cin>>a;
 		vector<int>pr(n,0);
-		if(n==1){
-			cout<<1<<endl;
-		}
-		else{
-			int s=0;
-			for(int i = 1 ; i < n ; ++i){
-				if(a[i]!=a[i-1]){	
-					s+=i;
-				}
+		for(int i = 1 ; i < n ; ++i){
+			if(a[i-1]==a[i]){
+				pr[i]=0;
 			}
-			cout<<s+n<<endl;
+			else if(a[i-1]=='0' and a[i]=='1'){
+				pr[i]=i;
+			}
+			else if(a[i-1]=='1' and a[i]=='0'){
+				pr[i]=pr[i-1]+1;
+			}
 		}
+		int s=0;
+		for(int i=0 ; i < n ; ++i){
+			s+=pr[i];
+		}
+		cout<<s+n<<endl;
     }
 }
