@@ -66,6 +66,17 @@ int32_t main()
     fio
     int t; cin>>t;
     while(t--){
-        
+		int n;
+		cin>>n;
+		vi a(n);
+		ifor(0,n) cin>>a[i];
+		for(int i = 1 ; i<n ; ++i){
+			if(i<0){
+				
+			}
+			else{
+
+			}
+		} 
     }
 }
