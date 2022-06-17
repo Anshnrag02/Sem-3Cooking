@@ -66,25 +66,36 @@ int32_t main()
     fio
     int t; cin>>t;
     while(t--){
-        int n; cin>>n;
-		string a;
-		cin>>a;
-		vector<int>pr(n,0);
-		for(int i = 1 ; i < n ; ++i){
-			if(a[i-1]==a[i]){
-				pr[i]=0;
-			}
-			else if(a[i-1]=='0' and a[i]=='1'){
-				pr[i]=i;
-			}
-			else if(a[i-1]=='1' and a[i]=='0'){
-				pr[i]=pr[i-1]+1;
-			}
+		int n,s=0;
+		cin>>n;
+		vi a(n+1,0),b(n+1,0),c(n+1,0);bool f=0;
+		ifor(1,n+1){ 
+			cin>>a[i];
+			s+=a[i];
 		}
-		int s=0;
-		for(int i=0 ; i < n ; ++i){
-			s+=pr[i];
+		if(s!=0){
+			f=1;
 		}
-		cout<<s+n<<endl;
+		for(int i = 1 ; i<=n and f==0 ; ++i){
+			b[i]=a[i]+c[i];
+			c[i+1]=b[i];
+			if(b[i]==0){
+				for(int j = i+1 ; j<=n; ++j){
+					if(a[j]!=0){
+						f=1;
+						break;
+					}
+				}
+				break;
+			}
+			if(b<0){
+				f=1;
+				break;
+			}
+		} 
+		if(f)
+			cout<<"NO"<<endl;
+		else
+			cout<<"YES"<<endl;
     }
 }

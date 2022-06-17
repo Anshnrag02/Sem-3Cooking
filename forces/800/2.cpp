@@ -66,17 +66,36 @@ int32_t main()
     fio
     int t; cin>>t;
     while(t--){
-		int n;
+		int n,s=0;
 		cin>>n;
-		vi a(n);
-		ifor(0,n) cin>>a[i];
-		for(int i = 1 ; i<n ; ++i){
-			if(i<0){
-				
+		vi a(n+1,0),b(n+1,0),c(n+1,0);bool f=0;
+		ifor(0,n){ 
+			cin>>a[i];
+			s+=a[i];
+		}
+		if(s!=0){
+			f=1;
+		}
+		for(int i = 0 ; i<n and f==0 ; ++i){
+			b[i]=a[i]+c[i];
+			c[i+1]=b[i];
+			if(b[i]==0 and i<n-1){
+				for(int j = i+1 ; j<=n; ++j){
+					if(a[j]!=0){
+						f=1;
+						break;
+					}
+				}
+				break;
 			}
-			else{
-
+			if(b[i]<0){
+				f=1;
+				break;
 			}
 		} 
+		if(f)
+			cout<<"NO"<<endl;
+		else
+			cout<<"YES"<<endl;
     }
 }
