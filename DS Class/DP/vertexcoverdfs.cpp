@@ -4,7 +4,39 @@ using namespace std;
 int n,m;
 map<int,vector<int>>adj;
 
+int ans(int i , int pr, bool inc){
+    int t = inc?1:0;
+    for(auto x:adj[i]){
+        if(x!=pr){
+            if(inc==1){
+                t+=min(ans(x,i,inc),ans(x,i,!inc));
+            }
+            else{
+                t+=ans(x,i,!inc);
+            }
+        }
+    }
+
+    return t;
+    
+}
+
+pair<int,int> bt(int i, int pr){
+    int exc = 0;
+    int inc = 1;
+    for(auto x: adj[i]){
+        if(x!=pr){
+            pair<int,int>temp = bt(x,i);
+            exc+=temp.second;
+            inc+=min(temp.second,temp.first);
+        }
+    }
+
+    return {exc,inc};
+}
+
 void dfs(int i , int pr,vector<vector<int>>&dp){
+    
     dp[i][0]=0;
     dp[i][1]=1;
     // cout<<i<<pr<<endl;
@@ -53,5 +85,8 @@ int main(){
     vector<vector<int>>dp(n+1,vector<int>(2));
     dfs(1,0,dp);
     cout<<min(dp[1][0],dp[1][1]);
+    pair<int , int>t = bt(0,-1);
+    cout<<min(t.first , t.second);
+    cout<<min(ans(0,-1,0),ans(0,-1,1));
     // cout<<"yes";
 }
