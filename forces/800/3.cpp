@@ -28,7 +28,7 @@ using namespace std;
 #define dfor(a,b)         for(int i = b-1 ; i >= a ; i--)
 #define fio               ios_base::sync_with_stdio(0) ; cin.tie(0) ; cout.tie(0) ;
 mt19937                   rng(chrono::steady_clock::now().time_since_epoch().count());
-
+int l[1000001],a[1000001],r[1000001],p[1000001];
 
 // check odd even : n & 1
 // check power of 2 : n & n - 1 == 0
@@ -60,12 +60,53 @@ ll power(ll x, ll y, ll p)
 } 
 */
 
+int n;
+
+int ans = 0;
+
+map<int,vector<int>>adj;
+
+int f(int i, int pr){
+	int sum=0;
+	int cnt=0;
+	for(auto x: adj[i]){
+		if(x!=pr){
+			cnt++;
+			sum+=f(x,i);
+		}
+	}
+	if(cnt == 0){
+		ans++;
+		return r[i];
+	}
+
+	if(sum<l[i]){
+		ans++;
+		return r[i];
+	}
+
+	return min(sum,r[i]);
+
+}
 
 int32_t main()
 {
     fio
     int t; cin>>t;
     while(t--){
-        
+		ans=0;
+		cin>>n;
+		p[1]=0;
+		for(int i = 2 ; i <=n ; ++i){
+			cin>>p[i];
+			adj[i].push_back(p[i]);
+			adj[p[i]].push_back(i);
+		}
+		for(int i=1; i<=n ; ++i){
+			cin>>l[i]>>r[i];
+		}
+		f(1,-1);
+		cout<<ans<<endl;
+		adj.clear();
     }
 }
