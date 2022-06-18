@@ -29,11 +29,7 @@ int main(){
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
-    bool f=0;
-    for(int i = 0 ; i < n ; ++i){
-        if(vis[i]==0){
-            dfs(i);
-        }
-    }
-    cout<<cnt1*cnt0-m;
+
+    
+
 }
