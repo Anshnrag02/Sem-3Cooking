@@ -5,9 +5,11 @@ int n,m;
 map<int,vector<int>>adj;
 vector<bool>vis(10000,false);
 vector<bool>status(10000,0);
+int cnt0=0, cnt1=0;
 
 void dfs(int i, bool clr = 0){
     vis[i]=1;
+    (!clr)?cnt0++:cnt1++;
     status[i]=clr;
     for(auto x: adj[i]){
         if(!vis[x]){
@@ -17,7 +19,8 @@ void dfs(int i, bool clr = 0){
 }
 
 int main(){
-    cin>>n>>m;
+    cin>>n;
+    m=n-1;
     int u,v;
     for(int i = 0 ; i <m ; ++i)
     {
@@ -32,22 +35,5 @@ int main(){
             dfs(i);
         }
     }
-    for(int i = 0 ; i < n ; ++i){
-        vis[i]=0;
-    }
-    for(int i = 0 ; i < n ; ++i){
-        vis[i]=1;
-        for(auto x:adj[i]){
-            if(!vis[x]){
-                if(status[i]==status[x]){
-                    cout<<"NOT BPT";
-                    f=1;
-                    break;
-                }
-            }
-        }
-    }
-    if(!f){
-        cout<<"YES BPT";
-    }
+    cout<<cnt1*cnt0-m;
 }
