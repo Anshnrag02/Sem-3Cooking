@@ -98,10 +98,10 @@ int32_t main()
         cin>>q;
         int l = 0, r =1e9;
         int mid;
-        while(l<=r){
+        while(l<r){
             mid = (l+r)>>1;
             if(f(mid)){
-                r=mid-1;
+                r=mid;
             }
             else{
                 l=mid+1;
@@ -115,7 +115,7 @@ int32_t main()
             cout<<-1;
         }
         // cout<<f(5);
-        cout<<endl;
+        cout<<'\n';
     }
 
 
