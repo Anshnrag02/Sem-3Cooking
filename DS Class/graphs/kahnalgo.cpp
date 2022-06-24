@@ -5,6 +5,8 @@ int n , m, l;
 map<int, vector<int>>adj;
 vector<bool>vis(10000,false);
 vector<bool>vis2(10000,false);
+vector<int>i_deg(10000,0);
+// vector<int>o_deg(10000,0);
 // map<pair<int,int>,int>wt;
 // vector<vector<int>>E;
 int cnt = 0 ; 
@@ -32,36 +34,44 @@ int cnt = 0 ;
 //     }
 // }
 
-void dfs(int i , int len){
-    vis[i]=1;
-    for(auto x:adj[i]){
-        
-        if(!vis[x] and len<l-1 and vis2[x]==0){
-            dfs(x,len+1); 
-        }
-        else if(vis[x] and len==l-1 and vis2[x]==1){
-            cnt++;
-        }
-    }
-    vis[i]=0;
-}
-
-
 int main(){
 
-    cin>>n>>m>>l;
+    cin>>n>>m;
     for(int i = 0 ; i < m ; ++i){
         int u,v;
         cin>>u>>v;
         adj[u].push_back(v);
-        adj[v].push_back(u);
+        i_deg[v]++;
         // E.push_back({u,v,w});
     }
-    for(int i = 0 ; i < n; ++i){
-        vis2[i]=1;
-        dfs(i,0);
-        // for(int _ = i+1 ; _ < n ; _++) vis[_]=0;
+    queue<int>q;
+    vector<int>ans;
+    int vis_count=0;
+    bool f=1;
+    while(vis_count<n){
+        int temp = vis_count;
+        for(int i = 0 ; i < n ; ++i){
+            if(!vis[i] and i_deg[i]==0){
+                q.push(i);
+                vis[i]=1;
+                vis_count++;
+            }        
+        }
+        if(vis_count==temp){
+            f=0;
+            break;
+        }
+        while(!q.empty()){
+            int f = q.front();
+            ans.push_back(f);
+            q.pop();
+            for(auto x: adj[f]){
+                i_deg[x]--;
+            }
+        }
     }
-
-    cout<<cnt/2;
+    if(!f)   
+        cout<<"NO TS";
+    else 
+        for(auto x:ans)cout<<x<<" ";
 }
