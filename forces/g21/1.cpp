@@ -70,6 +70,12 @@ int32_t main()
 	int t =1;
 	cin>>t;
     while(t--){
-        
+        int n,x,t=0,f;
+        cin>>n>>f;
+        ifor(0,n){  
+            cin>>x;
+            t=max(t,x|f);
+        }    
+        cout<<t<<endl;
     }
 }

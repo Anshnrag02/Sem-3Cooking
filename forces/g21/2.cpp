@@ -70,6 +70,28 @@ int32_t main()
 	int t =1;
 	cin>>t;
     while(t--){
-        
+        int n;
+        cin>>n;
+        vi a(n);
+        ifor(0,n){
+            cin>>a[i];
+        }
+        int cnt=0;
+        int pz=1;
+        for(int i = 0 ; i < n ; ++i ){
+            if(a[i]!=0){
+                if(pz){
+                    cnt++;
+                    pz=0;
+                }
+            }
+            else{
+                if(!pz){
+                    pz=1;
+                }
+            }
+        }
+        cnt=min((int)2,cnt);
+        cout<<(cnt)<<endl;
     }
 }
