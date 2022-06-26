@@ -35,16 +35,11 @@ int main(){
         E[{u,v}]=w;
         E[{v,u}]=w;
     }
-
     p[0]=-1;
     d[0]=0;
     int cnt  = 0; 
-
     while(cnt<n){
         int k = find_min();
-        if(k==-1){
-            break;
-        }
         cnt++;
         vis[k]=1;
         for(auto x: adj[k]){
