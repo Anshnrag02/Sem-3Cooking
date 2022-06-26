@@ -73,7 +73,7 @@ int32_t main()
         int n ;  cin>>n;
         string s; cin>>s;
         vector<pair<int,int>>a;
-        pqs p0q,p1q;
+        vector<int>v;
         int f=1;
         int cnt = 0;
         char prev='a';
@@ -84,10 +84,7 @@ int32_t main()
                     if(cnt % 2 ==1)
                         a.pb({f,cnt});
                     ++f;
-                    if(prev=='0')
-                        p0q.push(cnt);
-                    else
-                        p1q.push(cnt);
+                    v.pb(cnt);
                 }
                 prev=s[i];
                 cnt=1;
@@ -99,10 +96,7 @@ int32_t main()
         if(cnt>0){
             if(cnt%2==1)
                 a.pb({f,cnt});
-            if(prev=='0')
-                p0q.push(cnt);
-            else
-                p1q.push(cnt);
+            v.pb(cnt);
         }
 
         int ans = 0 ;
@@ -111,18 +105,17 @@ int32_t main()
                 ans+=a[i+1].first-a[i].first;
             }
         }
-        int l = 0;
-        int init_size=pq.size();
-        int temp = ans;
-        while(temp>0){
-            if(!p0q.empty() and p0q.top()<=temp){
-                temp-=pq.top();
-                pq.pop();
-                ++l;
-            }else{
-                break;
-            }
+        int k = v.size();
+        vector<pair<int,int>>p,q;
+        for(int i = 0 ; i < k ; i+=2){
+            p.pb({v[i],i});
         }
-        int s1 = init_size-
+        for(int i = 1 ; i < k ; i+=2){
+            q.pb({v[i],i});
+        }
+        sort(p.begin(),p.end());
+        sort(q.begin(),q.end());
+        bool f=0,l=0;
+        for(auto x:p)
     }
 }
