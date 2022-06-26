@@ -24,41 +24,12 @@ int main(){
 		for(int i = 0 ; i < n ; ++i){
 			cin>>a[i];
 		}
-		int i = 0; 
-		int j = n-1;
-		while(i<j){
-			if(a[i]==i+1 and a[j]==j+1){
-				adj[i].insert(j);
-				adj[j].insert(i);
-				++i;
-				j--;
-			}
-			else{
-				break;
-			}
-		}
-		i = 0; 
-		j = n-1;
-		while(i<j){
-			if(a[i]==j+1 and a[j]==i+1){
-				adj[i].insert(j);
-				adj[j].insert(i);
-				++i;
-				j--;
-			}
-			else{
-				break;
-			}
-		}
-		for(int i = 0 ; i<n-1 ;++i){
-			adj[i].insert(i+1);
-		}
+
 		queue<pair<int,int>>q;
 		q.push({0,0});
 		vis[0]=1;
 		while(!q.empty()){
 			int f = q.front().first;
-			
 			int s = q.front().second;
 			if(f==n-1){
 				cout<<s<<endl;break;
