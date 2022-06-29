@@ -27,7 +27,7 @@ signed main(){
         sort(neg.begin(),neg.end());
         int p = pos.size();
         int ne = neg.size();
-        int ans = INT_MIN; 
+        int ans = -1000000000000000000; 
         
         if(pos.size()>=5){
             ans = max(ans,pos[p-1]*pos[p-2]*pos[p-3]*pos[p-4]*pos[p-5]);
@@ -42,22 +42,20 @@ signed main(){
         }
 
         if(ne>=5){
-            ans = max(ans,neg[0]*neg[1]*neg[2]*neg[3]*neg[4]);
+            ans = max(ans,-neg[0]*neg[1]*neg[2]*neg[3]*neg[4]);
         }
 
-        if(ne>=3 and pos>=2){
-            ans = max(ans,neg[0]*neg[1]*neg[2]*pos[0]*pos[1]);
+        if(ne>=3 and p>=2){
+            ans = max(ans,-neg[0]*neg[1]*neg[2]*pos[0]*pos[1]);
         }
 
-        if(ne>=1 and pos>=4){
-            ans = max(ans,neg[0]*pos[3]*pos[2]*pos[0]*pos[1]);
+        if(ne>=1 and p>=4){
+            ans = max(ans,-neg[0]*pos[3]*pos[2]*pos[0]*pos[1]);
         }
 
         if(zer.size()){
             ans = max(0ll,ans);
         }
-
-        ans = max(ans,a[0]*a[1]*a[2]*a[3]*a[4]);
         cout<<ans<<endl;    
     }
 }
