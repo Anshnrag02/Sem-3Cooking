@@ -14,13 +14,13 @@ void createST(int start , int end, int idx){
     int mid = start + (end-start)/2;
     createST(start,mid,2*idx+1);
     createST(mid+1,end,2*idx+2);
-    t[idx]=t[2*idx+1]+t[2*idx+2];
+    t[idx]=min(t[2*idx+1],t[2*idx+2]);
 
 }
 
 int query(int s, int e, int idx, int l, int r){
     if(s>r || e<l){
-        return 0;
+        return INT_MAX;
     }
 
     if( s>=l and e<=r){
@@ -28,7 +28,7 @@ int query(int s, int e, int idx, int l, int r){
     }
 
     int mid = s + (e-s)/2;
-    return query(s,mid,2*idx+1,l,r)+query(1+mid,e,2*idx+2,l,r);
+    return min(query(s,mid,2*idx+1,l,r),query(1+mid,e,2*idx+2,l,r));
 }
 
 void update(int s, int e, int idx, int target, int tar_val){
@@ -41,7 +41,7 @@ void update(int s, int e, int idx, int target, int tar_val){
         update(s,mid,2*idx+1,target,tar_val);
     else
         update(mid+1,e,2*idx+2,target,tar_val);
-    t[idx]=t[2*idx+1]+t[2*idx+2];
+    t[idx]=min(t[2*idx+1],t[2*idx+2]);
 }
 
 signed main(){
@@ -52,11 +52,9 @@ signed main(){
     while(t--){
         int f,l,r;
         cin>>f>>l>>r;
-        if(f==2){
+        if(f==2)
             cout<<query(0,n-1,0,l-1,r-1)<<endl;
-        }
-        else{
+        else
             update(0,n-1,0,l-1,r);
-        }
     }
 }
