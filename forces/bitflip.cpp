@@ -74,27 +74,58 @@ int32_t main()
 {
     int t; cin>>t;
     while(t--){
-        int n,r,b;
-        cin>>n>>r>>b;
-        int x=r/(b+1);
-        int left = r-x*(b+1);
-        for(int i = 0 ; i < b ; ++i){
-            for(int j = 0 ; j < x ; j++){
-                cout<<"R";
-            }
-            if(left>0){
-                cout<<"R";
-                left--;
-            }
-            cout<<"B";
-        }
-        for(int j = 0 ; j < x ; j++){
-                cout<<"R";
-        }
-        if(left>0){
-            cout<<"R";
-            left--;
-        }
-        cout<<endl;
+        int n,k;
+        cin>>n>>k;
+        string s; cin>>s;
+		vector<int>a(n);
+        vector<int>f(n,0);
+		for(int i=0 ; i<n ; ++i){
+			if(s[i]=='1'){
+				a[i]=1;
+			}
+			else{
+				a[i]=0;
+			}
+		}
+		if(k%2==0){
+			for(int i = 0 ;i < n ; ++i){
+				if(a[i]==0 and k>0){
+					f[i]=1;
+					k--;
+				}
+			}
+			f[n-1]+=k;
+			for(int i = 0 ; i<n ; ++i){
+				if((a[i]+f[i])%2==0){
+					cout<<0;
+				}
+				else{
+					cout<<1;
+				}
+			}
+
+		}
+		else{
+			for(int i = 0 ; i < n ; ++i){
+				if(a[i]==1 and k>0){
+					f[i]=1;
+					k--;
+				}
+			}
+			f[n-1]+=k;
+			for(int i = 0 ; i<n ; ++i){
+				if((a[i]+f[i])%2==0){
+					cout<<1;
+				}
+				else{
+					cout<<0;
+				}
+			}
+		}
+		cout<<endl;
+		for(int i = 0 ; i < n ; ++i){
+			cout<<f[i]<<" ";
+		}
+		cout<<endl;
     }
 }
