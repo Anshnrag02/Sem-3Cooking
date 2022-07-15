@@ -1,16 +1,18 @@
+
 //GODLEON'S CODE
 #include<bits/stdc++.h>
 using namespace std;
 
 #define ff                first
 #define ss                second
-#define int        	      long long
+#define int        	  long long
 #define ll                long long
 #define ddouble           long double  
-#define pb 		          push_back
-#define mp 		          make_pair
+#define pb 		  push_back
+#define mp 		  make_pair
 #define pii               pair<int , int>
 #define vi                vector<int>
+#define vvi                vector<vi>
 #define mii               map<int,int>
 #define gsort             greater<int>
 #define pqb               priority_queue<int>
@@ -25,6 +27,8 @@ using namespace std;
 #define mk(arr,n,type)    type *arr = new type[n] ;
 #define test(t)           int t ; cin >> t ; while(t--)
 #define ifor(a,b)         for(int i = a ; i < b ; i++)
+#define jfor(a,b)         for(int j = a ; j < b ; j++)
+#define kfor(a,b)         for(int k = a ; k < b ; k++)
 #define dfor(a,b)         for(int i = b-1 ; i >= a ; i--)
 #define fio               ios_base::sync_with_stdio(0) ; cin.tie(0) ; cout.tie(0) ;
 mt19937                   rng(chrono::steady_clock::now().time_since_epoch().count());
@@ -60,29 +64,26 @@ ll power(ll x, ll y, ll p)
 } 
 */
 
+
 int32_t main()
 {
-    int t; cin>>t;
+    fio;
+	int t =1;
+	cin>>t;
     while(t--){
-        int n,k,b;
-        cin>>n>>k>>b;
-        vi a(n+1,0);
-        ifor(1,n+1){
-            cin>>a[i];
+        int n; cin>>n;
+        vector<bool>vis(n+1,false);
+        cout<<2<<endl;
+        for(int i = 1 ; i <=n ; ++i){
+            if(!vis[i]){
+                int j =i;
+                while(j<=n){
+                    cout<<j<<" ";
+                    vis[j]=1;
+                    j*=2;
+                }
+            }
         }
-        vi p(n+1,0);
-        ifor(1,n+1){
-            p[i]=a[i]-a[i-1];
-        }
-        vi suf(n+1);
-        suf[n]=0;
-        dfor(0,n){
-            suf[i]=suf[i+1]+a[i+1];
-        }
-        int ans=99999999999999;
-        ifor(0,n+1){
-            ans=min(ans,(k+b)*a[i]+b*(suf[i]-(n-i)*a[i]));
-        }
-        cout<<ans<<endl;
+        cout<<endl;
     }
 }

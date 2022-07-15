@@ -4,11 +4,11 @@ using namespace std;
 
 #define ff                first
 #define ss                second
-#define int        	      long long
+#define int        	  long long
 #define ll                long long
 #define ddouble           long double  
-#define pb 		          push_back
-#define mp 		          make_pair
+#define pb 		  push_back
+#define mp 		  make_pair
 #define pii               pair<int , int>
 #define vi                vector<int>
 #define mii               map<int,int>
@@ -59,30 +59,26 @@ ll power(ll x, ll y, ll p)
 	return res; 
 } 
 */
+vi t(2000000,0);
+vi a(200000,0);
+
+
 
 int32_t main()
 {
-    int t; cin>>t;
-    while(t--){
-        int n,k,b;
-        cin>>n>>k>>b;
-        vi a(n+1,0);
-        ifor(1,n+1){
+    fio;
+    // ll ttt=-1;
+	int t =1;
+	// cin>>t;
+    while(t--)
+    {
+
+        int n ; cin>>n;
+        
+        ifor(0,n){
             cin>>a[i];
+            a[i]--;
         }
-        vi p(n+1,0);
-        ifor(1,n+1){
-            p[i]=a[i]-a[i-1];
-        }
-        vi suf(n+1);
-        suf[n]=0;
-        dfor(0,n){
-            suf[i]=suf[i+1]+a[i+1];
-        }
-        int ans=99999999999999;
-        ifor(0,n+1){
-            ans=min(ans,(k+b)*a[i]+b*(suf[i]-(n-i)*a[i]));
-        }
-        cout<<ans<<endl;
+        
     }
 }

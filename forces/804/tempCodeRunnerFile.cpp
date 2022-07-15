@@ -1,16 +1,18 @@
+
 //GODLEON'S CODE
 #include<bits/stdc++.h>
 using namespace std;
 
 #define ff                first
 #define ss                second
-#define int        	      long long
+#define int        	  long long
 #define ll                long long
 #define ddouble           long double  
-#define pb 		          push_back
-#define mp 		          make_pair
+#define pb 		  push_back
+#define mp 		  make_pair
 #define pii               pair<int , int>
 #define vi                vector<int>
+#define vvi                vector<vi>
 #define mii               map<int,int>
 #define gsort             greater<int>
 #define pqb               priority_queue<int>
@@ -25,6 +27,8 @@ using namespace std;
 #define mk(arr,n,type)    type *arr = new type[n] ;
 #define test(t)           int t ; cin >> t ; while(t--)
 #define ifor(a,b)         for(int i = a ; i < b ; i++)
+#define jfor(a,b)         for(int j = a ; j < b ; j++)
+#define kfor(a,b)         for(int k = a ; k < b ; k++)
 #define dfor(a,b)         for(int i = b-1 ; i >= a ; i--)
 #define fio               ios_base::sync_with_stdio(0) ; cin.tie(0) ; cout.tie(0) ;
 mt19937                   rng(chrono::steady_clock::now().time_since_epoch().count());
@@ -59,30 +63,62 @@ ll power(ll x, ll y, ll p)
 	return res; 
 } 
 */
+vi v;
+
+bool f(int mid){
+    int down=0;
+    int up=0;
+    int mx=INT_MIN;
+    for(auto x:v){
+        if(x<mid){
+            down+=mid-x;
+        }
+        else if(x>mid){
+            up+=x-mid;
+        }
+        mx=max(x,mx);
+    }
+    if(2*up<=down and mid>=mx)
+        return true;
+    return false;
+}
+
 
 int32_t main()
 {
-    int t; cin>>t;
+    fio;
+	int t =1;
+	cin>>t;
     while(t--){
-        int n,k,b;
-        cin>>n>>k>>b;
-        vi a(n+1,0);
-        ifor(1,n+1){
-            cin>>a[i];
+        v={};
+        map<int,int>m;
+        int n,k,x;
+        cin>>k>>n;
+        ifor(0,n){
+            cin>>x;
+            m[x]++;
         }
-        vi p(n+1,0);
-        ifor(1,n+1){
-            p[i]=a[i]-a[i-1];
+        
+        ifor(1,k+1){
+            v.pb(m[i]);
         }
-        vi suf(n+1);
-        suf[n]=0;
-        dfor(0,n){
-            suf[i]=suf[i+1]+a[i+1];
+        int l  = 0 , r=1e9;
+        int mid;
+        while(l<r){
+            mid = l + (r-l)/2;
+            
+
+            if(f(mid)){
+                r=mid;
+            }
+            else{
+                l=mid+1;
+            }
         }
-        int ans=99999999999999;
-        ifor(0,n+1){
-            ans=min(ans,(k+b)*a[i]+b*(suf[i]-(n-i)*a[i]));
+        if(f(r))
+            cout<<r<<endl;
+        else{
+            cout<<l<<endl;
         }
-        cout<<ans<<endl;
     }
 }
