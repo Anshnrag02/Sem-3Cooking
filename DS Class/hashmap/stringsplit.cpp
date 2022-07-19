@@ -19,5 +19,5 @@ int main(){
         m[s[i]-'a']=i;
     }
     maxlen=max(maxlen,n-1-breakpoint);
-    cout<<cnt;
+    cout<<cnt<<;
 }
